@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack -w",
-    "dev": "webpack & node server.js"  
+    "dev": "webpack & node server.js",
+    "start": "node server"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,10 @@
     "sequelize": "^4.5.0"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "webpack": "^3.5.5",
     "webpack-dev-server": "^2.7.1"
   }

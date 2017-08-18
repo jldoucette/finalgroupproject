@@ -6,6 +6,9 @@ var logger = require("morgan");
 //Express
 var app = express();
 
+//Models for DB
+var db = require("./models");
+
 //Port
 var PORT = process.env.PORT || 3000;
 

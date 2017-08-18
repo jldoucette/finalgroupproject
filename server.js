@@ -7,7 +7,9 @@ var logger = require("morgan");
 var app = express();
 
 //Models for DB
-var db = require("./models");
+
+// var db = require("./models/index.js");
+// var db = require("./models/plates.js");
 
 //Port
 var PORT = process.env.PORT || 3000;
@@ -28,3 +30,10 @@ app.use(express.static("public"));
 app.listen(PORT, function() {
     console.log("App listening on PORT: " + PORT);
   });
+
+//   db.sequelize.sync().then(function() {
+//   app.listen(PORT, function() {
+//     console.log("App listening on PORT " + PORT);
+//   });
+// });
+

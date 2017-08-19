@@ -35,6 +35,10 @@ module.exports = function(sequelize, DataTypes) {
     devoured: {
     type: DataTypes.BOOLEAN, 
     defaultValue: false
+    },
+    piclink: {
+      type:  DataTypes.STRING,
+      allowNull: true
     }
   });
   return plates;

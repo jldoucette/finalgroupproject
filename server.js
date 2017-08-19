@@ -27,9 +27,9 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(express.static("public"));
 
 // Starting our express server
-app.listen(PORT, function() {
-    console.log("App listening on PORT: " + PORT);
-  });
+// app.listen(PORT, function() {
+//     console.log("App listening on PORT: " + PORT);
+//   });
 
   db.sequelize.sync().then(function() {
   app.listen(PORT, function() {

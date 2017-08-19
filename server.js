@@ -6,13 +6,13 @@ var logger = require("morgan");
 //Express
 var app = express();
 
-//Models for DB
-
-// var db = require("./models/index.js");
-// var db = require("./models/plates.js");
-
 //Port
 var PORT = process.env.PORT || 3000;
+
+//Models for DB
+var db = require("./models");
+// var db = require("./models/index.js");
+// var db = require("./models/plates.js");
 
 //Morgan for Logging
 app.use(logger("dev"));
@@ -31,9 +31,9 @@ app.listen(PORT, function() {
     console.log("App listening on PORT: " + PORT);
   });
 
-//   db.sequelize.sync().then(function() {
-//   app.listen(PORT, function() {
-//     console.log("App listening on PORT " + PORT);
-//   });
-// });
+  db.sequelize.sync().then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
+});
 

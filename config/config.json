@@ -12,5 +12,12 @@
     "database": "lastcall",
     "host": "127.0.0.1",
     "dialect": "mysql"
+  },
+  "production": {
+    "username": "urdho55tcqcyxczz",
+    "password": "ncxrf6fsv0y8qsp6",
+    "database": "jehd1voiplc90lx5",
+    "host": "mna97msstjnkkp7h.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "dialect": "mysql"
   }
 }

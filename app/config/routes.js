@@ -1,6 +1,5 @@
 // Include the React library
 var React = require("react");
-
 // Include the react-router module
 var router = require("react-router");
 
@@ -16,7 +15,6 @@ var IndexRoute = router.IndexRoute;
 
 // Reference the high-level components
 var Main = require("../components/Main");
-
 
 // Export the Routes
 module.exports = (

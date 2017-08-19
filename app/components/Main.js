@@ -1,10 +1,11 @@
 // Include React
-var React = require("react");
+// var React = require("react");
+var createReactClass = require('create-react-class');
 // Including the Link component from React Router to navigate within our application without full page reloads
 var Link = require("react-router").Link;
 
 // Create the Main component
-var Main = React.createClass({
+var Main = createReactClass({
 
   // Here we render the component
   render: function() {
@@ -49,9 +50,7 @@ var Main = React.createClass({
           </nav>          
 
           <div className="row">
-            <div className="text-center">
-
-            </div>
+            <h1>Testing</h1>
           </div>
         </div>
 

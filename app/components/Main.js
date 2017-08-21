@@ -1,18 +1,17 @@
 // Include React
-// var React = require("react");
-var createReactClass = require('create-react-class');
-// Including the Link component from React Router to navigate within our application without full page reloads
-var Link = require("react-router").Link;
+import React from "react";
 
 // Create the Main component
-var Main = createReactClass({
+class Main extends React.Component{
+
+  constructor () {
+    super();
+  }
 
   // Here we render the component
-  render: function() {
-
+  render() {
     return (
       <div className="container">
-
         <div className="row">
 
           <div className="jumbotron">
@@ -56,8 +55,9 @@ var Main = createReactClass({
 
       </div>
     );
-  }
-});
+  };
+};
 
 // Export the component back for use in other files
-module.exports = Main;
+// module.exports = Main;
+export default Main;

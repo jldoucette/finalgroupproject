@@ -1,21 +1,36 @@
 // Include React
-var React = require("react")
+// var React = require("react")
+// var Link = require("react-router").Link;
+import React from "react";
+import ReactDOM from "react-dom";
 
-var createReactClass = require('create-react-class');
-var Link = require("react-router").Link;
+// var Info = createReactClass({
+//   render: function() {
+//     return (
+//       <div className="row">
+//         <h1>Info </h1>
+//       </div>
+//     );
+//   }
+// });
 
-var Info = createReactClass({
-  
-  render: function() {
 
+class Info extends React.Component {
+  constructor () {
+    super();
+  }
+
+  //Render
+  render() {
     return (
-
       <div className="row">
-        <h1>Info </h1>
+        <h1> Info </h1>
       </div>
     );
   }
-});
+}
+
+
 
 // Export the component back for use in other files
-module.exports = Info;
+export default Info;

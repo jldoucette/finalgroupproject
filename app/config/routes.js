@@ -17,7 +17,7 @@ const IndexRoute = router.IndexRoute;
 
 // Include the hashHistory prop to handle routing client side without a server
 // var hashHistory = router.hashHistory;
-const hashHistory = router.hashHistory;
+// const hashHistory = router.hashHistory;
 
 // Include the browserHistory prop to configure client side routing
 // var browserHistory = router.browserHistory;

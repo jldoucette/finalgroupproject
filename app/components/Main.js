@@ -11,17 +11,8 @@ class Main extends React.Component{
   // Here we render the component
   render() {
     return (
-      <div className="container">
-        <div className="row">
-
-          <div className="jumbotron">
-            <h1>Last Meal</h1>
-            <p><em>Get your discounted meal</em></p>
-            {/* <Link to="/info"><button className="btn btn-default">Info</button></Link> */}
-            {/* <Link to="/chat"><button className="btn btn-default">Comments</button></Link> */}
-          </div>
-
-          <nav className="navbar navbar-default">
+      <div className="col-lg-12">
+        <nav className="navbar navbar-default">
             <div className="container-fluid">
               <div className="navbar-header">
                 <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -30,7 +21,7 @@ class Main extends React.Component{
                   <span className="icon-bar"></span>
                   <span className="icon-bar"></span>
                 </button>
-                <a className="navbar-brand" href="#">Brand</a>
+                <a className="navbar-brand" href="#">Last Meal</a>
               </div>
 
               <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -46,13 +37,11 @@ class Main extends React.Component{
                 </ul>
               </div>
             </div>
-          </nav>          
-
-          <div className="row">
-            <h1>Testing</h1>
-          </div>
+        </nav>         
+        <div className="row">
+          <h1>Hello</h1>
+          
         </div>
-
       </div>
     );
   };

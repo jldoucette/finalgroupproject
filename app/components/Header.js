@@ -2,7 +2,7 @@
 import React from "react";
 
 // Create the Main component
-class Main extends React.Component{
+class Header extends React.Component{
 
   constructor () {
     super();
@@ -38,10 +38,6 @@ class Main extends React.Component{
               </div>
             </div>
         </nav>         
-        <div className="row">
-          <h1>Hello</h1>
-          
-        </div>
       </div>
     );
   };
@@ -49,4 +45,4 @@ class Main extends React.Component{
 
 // Export the component back for use in other files
 // module.exports = Main;
-export default Main;
+export default Header;

@@ -1,7 +1,5 @@
 // Include React
-
 import React from "react";
-import ReactDOM from "react-dom";
 
 class Info extends React.Component {
   constructor () {

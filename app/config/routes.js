@@ -2,11 +2,13 @@
 import React from "react";
 import {BrowserRouter, Route} from 'react-router-dom';
 
-import Main from '../components/Main'
+import Header from '../components/Header'
 
 export default () => (
   <BrowserRouter>
-    <Route path="/" component={Main}/>
+    <Header/>
+    {/* <Route path="/" component={Header}/>
+    <Route path="/" component={Header}/> */}
   </BrowserRouter>
 );
 

@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var plates = sequelize.define("plates", {
+  var Plates = sequelize.define("plates", {
     plate_name: {
       type:  DataTypes.STRING,
       allowNull: false
@@ -10,15 +10,15 @@ module.exports = function(sequelize, DataTypes) {
     },
     side1: {
       type:  DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     side2: {
       type:  DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     side3: {
       type:  DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     price: {
       type:  DataTypes.STRING,
@@ -32,14 +32,28 @@ module.exports = function(sequelize, DataTypes) {
       type:  DataTypes.STRING,
       allowNull: false
     },
-    devoured: {
-    type: DataTypes.BOOLEAN, 
-    defaultValue: false
+    createdby: {
+      type: DataTypes.STRING,
+      allowNull:false
+    },
+    preptime:  {
+      type: DataTypes.STRING,
+      allowNull:false
+    },
+    delaytime:  {
+      type: DataTypes.STRING,
+      allowNull:false
+    },
+    createdate: {
+      type: DataTypes.STRING,
+      allowNull:false
     },
     piclink: {
       type:  DataTypes.STRING,
       allowNull: true
     }
   });
-  return plates;
+
+ 
+  return Plates;
 };

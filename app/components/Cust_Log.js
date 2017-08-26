@@ -1,2 +1,0 @@
-// Include React
-import React from "react";

@@ -1,5 +1,6 @@
 // Include React
 import React from "react";
+import { Link } from 'react-router-dom'
 
 // Create the Main component
 class Header extends React.Component{
@@ -11,7 +12,7 @@ class Header extends React.Component{
   // Here we render the component
   render() {
     return (
-      <div className="col-lg-12">
+      <div className="col-md-12">
         <nav className="navbar navbar-default">
             <div className="container-fluid">
               <div className="navbar-header">
@@ -33,7 +34,7 @@ class Header extends React.Component{
                   <button type="submit" className="btn btn-default">Submit</button>
                 </form>
                 <ul className="nav navbar-nav navbar-right">
-                  <li><a href="#">Link</a></li>
+                  <li><Link to='/login'>Login</Link></li>
                 </ul>
               </div>
             </div>
@@ -44,5 +45,4 @@ class Header extends React.Component{
 };
 
 // Export the component back for use in other files
-// module.exports = Main;
 export default Header;

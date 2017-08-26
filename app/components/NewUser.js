@@ -14,7 +14,7 @@ class NewUser extends React.Component{
       <div className="row">
         <div idName="loginpage">
             <h2>New User Page</h2>
-
+            <h1> Test </h1>
 
             <div idName="row">
                 <div idName="newuser">

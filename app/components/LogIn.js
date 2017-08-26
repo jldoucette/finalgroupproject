@@ -30,7 +30,6 @@ class LogIn extends React.Component {
                                 <button type="submit" className="btn btn-default">Login</button>
 
                                 <a className="btn btn-default"><Link to='/newuser'>Create New User</Link></a>
-                                
                                 {/* {{!-- </form> --}} */}
                             </form>
                         </div>

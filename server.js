@@ -1,10 +1,11 @@
 // Dependicies
-var express = require("express");
-var bodyParser = require("body-parser");
-var logger = require("morgan");
+let express = require("express");
+let bodyParser = require("body-parser");
+let path = require('path');
+let logger = require("morgan");
 
 //Express
-var app = express();
+let app = express();
 
 //Port
 var PORT = process.env.PORT || 3000;
@@ -24,9 +25,13 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // Any non API GET routes will be directed to our React App and handled by React Router
-app.get("/*", function(req, res) {
-  res.sendFile(__dirname + "/public/index.html");
+app.get("/", function(req, res) {
+  res.sendFile(path.join(__dirname + "/public/index.html"));
 });
+
+// app.get("/", function(req, res) {
+//   res.sendFile(__dirname + "/public/index.html");
+// });
 
 //
 app.use(express.static("public"));
@@ -36,7 +41,7 @@ app.use(express.static("public"));
 //     console.log("App listening on PORT: " + PORT);
 //   });
 
-  db.sequelize.sync().then(function() {
+db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });

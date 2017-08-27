@@ -2,16 +2,11 @@
 import React from "react";
 import {BrowserRouter, Route} from 'react-router-dom';
 
-import Header from '../components/Header';
-import LogIn from '../components/LogIn';
-import NewUser from '../components/NewUser';
+import Main from '../components/Main';
 
 export default () => (
   <BrowserRouter>
-
-    <Header/>
-  
-
+    <Main/>
   </BrowserRouter>
 );
 

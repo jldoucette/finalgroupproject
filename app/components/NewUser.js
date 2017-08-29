@@ -12,12 +12,10 @@ class NewUser extends React.Component{
   render() {
     return (
       <div className="row">
-        <div idName="loginpage">
+        <div className="col-md-10">
             <h2>New User Page</h2>
-            <h1> Test </h1>
-
-            <div idName="row">
-                <div idName="newuser">
+            <div id="loginpage">
+                <div className="newuser">
                     <h2>Create New User</h2>
 
                     <form className="create-update-form" action="/newuser" method="POST">
@@ -26,21 +24,21 @@ class NewUser extends React.Component{
                             <div className="form-group form-group-lg">
                                 <label className="col-md-3 control-label" for="first_name">First Name:</label>
                                 <div className="col-md-4">
-                                    <input type="text" idName="first_name" name="first_name"/>
-                                </div>
-                            </div>
-
-                            <div classNameName="form-group form-group-lg">
-                                <label classNameName="col-md-3 control-label" for="last_name">Last Name:</label>
-                                <div classNameName="col-md-4">
-                                    <input type="text" idName="last_name" name="last_name"/>
+                                    <input type="text" id="first_name" name="first_name"/>
                                 </div>
                             </div>
 
                             <div className="form-group form-group-lg">
-                                <label className="col-md-3 control-label" for="username">eMail (will be your username):</label>
+                                <label className="col-md-3 control-label" for="last_name">Last Name:</label>
                                 <div className="col-md-4">
-                                <input type="text" idName="username" name="username"/>
+                                    <input type="text" id="last_name" name="last_name"/>
+                                </div>
+                            </div>
+
+                            <div className="form-group form-group-lg">
+                                <label className="col-md-3 control-label" for="username">Email (will be your username):</label>
+                                <div className="col-md-4">
+                                <input type="text" id="username" name="username"/>
                                 </div>
                             </div>
 
@@ -86,9 +84,10 @@ class NewUser extends React.Component{
 
                         </form>
                     </form>
+
                 </div>
-            </div>
-        </div>         
+            </div>     
+        </div>
       </div>
     );
   };

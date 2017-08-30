@@ -1,7 +1,7 @@
 // Include React
 import React from "react";
 
-class Info extends React.Component {
+class AboutUs extends React.Component {
   constructor () {
     super();
   }
@@ -10,11 +10,12 @@ class Info extends React.Component {
   render() {
     return (
       <div className="row">
-        <h1> Info </h1>
+        <h1> Who We Are </h1>
+        <h1> Our Mission </h1>
       </div>
     );
   }
 }
 
 // Export the component back for use in other files
-export default Info;
+export default AboutUs;

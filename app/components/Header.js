@@ -12,15 +12,15 @@ class Header extends React.Component{
   // Here we render the component
   render() {
     return (
-      <div className="col-md-12">
+      <div className="row">
         <nav className="navbar navbar-inverse">
           <div className="container-fluid">
             <div className="navbar-header">
-              <a className="navbar-brand" href="#">Last Call</a>
-            </div>
+              <a className="navbar-brand">Last Call</a>
+            </div>  
             <ul className="nav navbar-nav">
               <li><Link to='/'>Home</Link></li>
-              <li><Link to ='/info'>About Us</Link></li>
+              <li><Link to ='/aboutus'>About Us</Link></li>
               <li>Page 2</li>
             </ul>
             <ul className="nav navbar-nav navbar-right">

@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/jldoucette/finalgroupproject#readme",
   "dependencies": {
+    "axios": "^0.16.2",
     "babel-core": "^6.26.0",
     "body-parser": "^1.17.2",
     "express": "^4.15.4",

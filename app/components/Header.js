@@ -31,6 +31,7 @@ class Header extends React.Component{
                   <li><Link to='/newplates'>Add New Plate</Link></li>
                   <li>View Plates</li>
                   <li>Something Else Here</li>
+                  <li> Setting </li>
                 </ul>
               </li>                             
               <li><Link to='newuser'><span className="glyphicon glyphicon-user"></span> Sign Up </Link></li>

@@ -17,5 +17,4 @@ class AboutUs extends React.Component {
   }
 }
 
-// Export the component back for use in other files
 export default AboutUs;

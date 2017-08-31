@@ -15,7 +15,10 @@ var helpers = {
     guestupdate: function() {
         console.log("Running testRetrieve");
         var testid='1';
-        axios.put('/api/updateguest').then(function(results){
+        axios.put('/api/updateguest',
+        {id:testid,
+        first_name: 'James'})
+        .then(function(results){
             console.log("Ran api/updateguest: ");
             console.log(results);
             return(results);

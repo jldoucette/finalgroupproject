@@ -192,12 +192,11 @@ app.post("/api/addrestaurant", function (req, res) {
 });
 
 app.put("/api/updateguest", function (req, res) {
-var testid='1';
     db.guests.update({
-      first_name: 'James',
+      first_name: req.body.first_name,
     }, {
         where: {
-          id: testid,
+          id: req.body.id,
         }
       }).then(function (data) {
         res.json(data);

@@ -86,7 +86,7 @@ class Plates extends React.Component {
                                     <div className="col-md-4">
                                     </div>
                                     <div className="col-md-8">
-                                        <button className="btn btn-default btn-large" type="submit">Add Plate</button>
+                                        <button className="btn btn-default btn-large" type="submit">Add New Plate</button>
                                     </div>
                                 </form>
                             </form>

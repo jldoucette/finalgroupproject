@@ -29,8 +29,8 @@ class Header extends React.Component{
                 <span className="caret"></span></a>
                 <ul className="dropdown-menu">
                   <li><Link to='/newplates'>Add New Plate</Link></li>
-                  <li><a href="#">View Plates</a></li>
-                  <li><a href="#">Something Else Here</a></li>
+                  <li>View Plates</li>
+                  <li>Something Else Here</li>
                 </ul>
               </li>                             
               <li><Link to='newuser'><span className="glyphicon glyphicon-user"></span> Sign Up </Link></li>

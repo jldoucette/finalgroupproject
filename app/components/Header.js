@@ -22,11 +22,21 @@ class Header extends React.Component{
               <li><Link to='/'>Home</Link></li>
               <li><Link to ='/aboutus'>About Us</Link></li>
               <li>Page 2</li>
-            </ul>
+            </ul>            
             <ul className="nav navbar-nav navbar-right">
+              <li className="dropdown">
+                <a className="dropdown-toggle" data-toggle="dropdown" href="#">Dashboard Actions
+                <span className="caret"></span></a>
+                <ul className="dropdown-menu">
+                  <li><Link to='/newplates'>Add New Plate</Link></li>
+                  <li><a href="#">View Plates</a></li>
+                  <li><a href="#">Something Else Here</a></li>
+                </ul>
+              </li>                             
               <li><Link to='newuser'><span className="glyphicon glyphicon-user"></span> Sign Up </Link></li>
               <li><Link to='login'><span className="glyphicon glyphicon-log-in"></span> Login </Link></li>
             </ul>
+           
           </div>
         </nav>        
       </div>

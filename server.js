@@ -33,13 +33,16 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 // });
 
 app.get("/", function (req, res) {
-  res.sendFile(__dirname + "/public/index.html");
+  res.sendFile(__dirname, "/public/index.html");
 });
 
-app.get("/login", function (req, res) {
+// app.get("/login", function (req, res) {
+//   res.sendFile(__dirname + "/public/index.html");
+// });
+
+app.get("/newuser", function (req, res) {
   res.sendFile(__dirname + "/public/index.html");
 });
-
 
 //TESTING SERVER FILE BASED ROUTES
 //user/pass placeholders for future state transferred variables

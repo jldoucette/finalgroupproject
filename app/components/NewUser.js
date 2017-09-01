@@ -14,52 +14,45 @@ class NewUser extends React.Component{
                 Phone: "",
                 Password: "",
                 Role: "",
-                RestID: ""};
+                RestID: ""
+            };
 
-    // this.enterInfo = this.enterInfo.bind(this);
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.enterInfo = this.enterInfo.bind(this);
 }
   
 
-  handleChange(event) {
-    console.log(event.target.value);
-    this.setState({
-        FirstName: event.target.value,
-        LastName: event.target.value,
-        Email: event.target.value,
-        Address: event.target.value,
-        Phone: event.target.value,
-        Password: event.target.value,
-        Role: event.target.value,
-        RestID: event.target.value
-    });
-  }
-
-//   handleSubmit(event) {
-//     alert('Your state is: ' + this.state);
-//     event.preventDefault();
+//   handleChange(event) {
+//     console.log(event.target.value);
+//     this.setState({
+//         FirstName: event.target.value,
+//         LastName: event.target.value,
+//         Email: event.target.value,
+//         Address: event.target.value,
+//         Phone: event.target.value,
+//         Password: event.target.value,
+//         Role: event.target.value,
+//         RestID: event.target.value
+//     });
 //   }
 
 
+    enterInfo(event) {
+        event.preventDefault();
+        var foo = {
+            FirstName: event.target.value,
+            LastName: event.target.value,
+            Email: event.target.value,
+            Address: event.target.value,
+            Phone: event.target.value,
+            Password: event.target.value,
+            Role: event.target.value,
+            RestID: event.target.value 
+        }       
+        console.log(this.state);
 
+        console.log(foo);
+    }
 
-    // enterInfo() {
-    //     axios
-    //         .post('/api/newuser')
-    //         .then(response => {
-    //             this.setState({
-    //                 FirstName: response.data.FirstName,
-    //                 LastName: response.data.LastName,
-    //                 Email: response.data.Email,
-    //                 Address: response.data.Address,
-    //                 Phone: response.data.Phone,
-    //                 Password: response.data.Password,
-    //                 Role: response.data.Role,
-    //                 RestID: response.data.RestID
-    //             });
-    //         });
-    // }
 
   // Here we render the component
   render() {
@@ -71,67 +64,99 @@ class NewUser extends React.Component{
                 <div className="newuser">
                     <h2>Create New User</h2>
 
-                    <form className="create-update-form" action="/newuser" method="POST" onSubmit={this.handleSubmit}>
+                    <form className="create-update-form" >
                         <div className="form-horizontal">
 
                             <div className="form-group form-group-lg">
-                                <label className="col-md-3 control-label" for="first_name">First Name:</label>
+                                <label className="col-md-3 control-label" htmlFor="first_name">First Name:</label>
                                 <div className="col-md-4">
-                                    <input type="text" id="first_name" value={this.state.FirstName} onChange={this.handleChange} name="first_name"/>
+                                    <input type="text" id="first_name" value={this.state.FirstName} name="first_name" onChange={(event) => {
+                                        this.setState({
+                                            FirstName: event.target.value
+                                        })
+                                    }} />
                                 </div>
                             </div>
 
                             <div className="form-group form-group-lg">
-                                <label className="col-md-3 control-label" for="last_name">Last Name:</label>
+                                <label className="col-md-3 control-label" htmlFor="last_name">Last Name:</label>
                                 <div className="col-md-4">
-                                    <input type="text" id="last_name" value={this.state.LastName} onChange={this.handleChange} name="last_name"/>
+                                    <input type="text" id="last_name" value={this.state.LastName}  name="last_name" onChange={(event) => {
+                                        this.setState({
+                                            LastName: event.target.value
+                                        })
+                                    }}/>
                                 </div>
                             </div>
 
                             <div className="form-group form-group-lg">
-                                <label className="col-md-3 control-label" for="username">Email (will be your username):</label>
+                                <label className="col-md-3 control-label" htmlFor="username">Email (will be your username):</label>
                                 <div className="col-md-4">
-                                <input type="text" id="username" value={this.state.Email} onChange={this.handleChange} name="username"/>
+                                <input type="text" id="username" value={this.state.Email} name="username" onChange={(event) => {
+                                        this.setState({
+                                            Email: event.target.value
+                                        })
+                                    }}/>
                                 </div>
                             </div>
 
                             <div className="form-group form-group-lg">
-                                <label className="col-md-3 control-label" for="address">Address (street,city,state,zip):</label>
+                                <label className="col-md-3 control-label" htmlFor="address">Address (street,city,state,zip):</label>
                                 <div className="col-md-4">
-                                <input type="text" id="address" value={this.state.Address} name="address"/>
+                                <input type="text" id="address" value={this.state.Address} name="address" onChange={(event) => {
+                                        this.setState({
+                                            Address: event.target.value
+                                        })
+                                    }}/>
                                 </div>
                             </div>
 
                             <div className="form-group form-group-lg">
-                                <label className="col-md-3 control-label" for="phone">Phone:</label>
+                                <label className="col-md-3 control-label" htmlFor="phone">Phone:</label>
                                 <div className="col-md-4">
-                                <input type="text" id="phone" value={this.state.Phone} name="phone"/>
+                                <input type="text" id="phone" value={this.state.Phone} name="phone" onChange={(event) => {
+                                        this.setState({
+                                            Phone: event.target.value
+                                        })
+                                    }}/>
                                 </div>
                             </div>
 
                             <div className="form-group form-group-lg">
-                                <label className="col-md-3 control-label" for="password">Password:</label>
+                                <label className="col-md-3 control-label" htmlFor="password">Password:</label>
                                 <div className="col-md-4">
-                                <input type="password" id="password" value={this.state.Password} name="password"/>
+                                <input type="password" id="password" value={this.state.Password} name="password" onChange={(event) => {
+                                        this.setState({
+                                            Password: event.target.value
+                                        })
+                                    }}/>
                                 </div>
                             </div>
 
                             <div className="form-group form-group-lg">
-                                <label className="col-md-3 control-label" for="user_role">Role (R or U):</label>
+                                <label className="col-md-3 control-label" htmlFor="user_role">Role (R or U):</label>
                                 <div className="col-md-4">
-                                <input type="text" id="user_role"value={this.state.Role} name="user_role"/>
+                                <input type="text" id="user_role"value={this.state.Role} name="user_role" onChange={(event) => {
+                                        this.setState({
+                                            Role: event.target.value
+                                        })
+                                    }}/>
                                 </div>
                             </div>
 
                             <div className="form-group form-group-lg">
-                                <label className="col-md-3 control-label" for="rest_id">If R, Rest ID:</label>
+                                <label className="col-md-3 control-label" htmlFor="rest_id">If R, Rest ID:</label>
                                 <div className="col-md-4">
-                                    <input type="text" id="rest_id" value={this.state.RestID} name="rest_id"/>
+                                    <input type="text" id="rest_id" value={this.state.RestID} name="rest_id" onChange={(event) => {
+                                        this.setState({
+                                            RestID: event.target.value
+                                        })
+                                    }}/>
                                 </div>
                             </div>
 
                             <div className='col-md-10'>
-                                <button className="btn btn-default btn-large" onClick={()=>this.enterInfo()} type="submit">Create User</button>
+                                <button className="btn btn-default btn-large" onClick={this.enterInfo} type="submit">Create User</button>
                                 <a className="btn btn-default" href="/login">Login Page</a>
                             </div>
 

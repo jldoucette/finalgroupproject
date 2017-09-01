@@ -34,8 +34,8 @@ class Header extends React.Component{
                   <li> Setting </li>
                 </ul>
               </li>                             
-              <li><Link to='newuser'><span className="glyphicon glyphicon-user"></span> Sign Up </Link></li>
-              <li><Link to='login'><span className="glyphicon glyphicon-log-in"></span> Login </Link></li>
+              <li><Link to='/newuser'><span className="glyphicon glyphicon-user"></span> Sign Up </Link></li>
+              <li><Link to='/login'><span className="glyphicon glyphicon-log-in"></span> Login </Link></li>
             </ul>
            
           </div>
@@ -45,7 +45,7 @@ class Header extends React.Component{
   };
 };
 
-<li><Link to='/login'>Login</Link></li>
+{/* <li><Link to='/login'>Login</Link></li> */}
 
 // Export the component back for use in other files
 export default Header;

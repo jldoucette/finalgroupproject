@@ -63,20 +63,22 @@ app.get("/api/testRetrieve", function (req, res) {
 });
 
 app.post("/api/newuser", function (req, res) {
-  var AlteredPassword = req.body.password;
-  bcrypt.hash(AlteredPassword, saltRounds, function (err, hash) { //bcrypt encrypts the password
+  console.log("Request Body is: ");
+  console.log(req.body);
+  // var AlteredPassword = req.body.password;
+  // bcrypt.hash(AlteredPassword, saltRounds, function (err, hash) { //bcrypt encrypts the password
     db.guests.create({
       username: req.body.username,
       first_name: req.body.first_name,
       last_name: req.body.last_name,
-      password: hash,
+      password:req.body.password,
       address: req.body.address,
       phone: req.body.phone,
       email: req.body.username,
       user_role: req.body.user_role,
-      restID: req.body.rest_id
+      restID: req.body.restID
 
-    })
+  
   }).then(function (data) {
     res.json(data);
   });

@@ -1,6 +1,6 @@
 // Include React
 import React from "react";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import helpers from "../utils/helpers.js";
 import NewUser from "./NewUser.js";
 
@@ -18,7 +18,7 @@ class LogIn extends React.Component {
                         <h2>Login Page</h2>
                         <div className='col-md-8'>
                             {/* <form className="create-update-form" action="/login/?_method=PUT" method="POST"> */}
-                                {/* <form className="form-inline">
+                            {/* <form className="form-inline">
                                 <div className="form-group">
                                     <label for="username">Username</label>
                                     <input type="text" id="username" name="username" />
@@ -27,11 +27,22 @@ class LogIn extends React.Component {
                                     <label for="password">Password</label>
                                     <input type="password" id="password" name="password" />
                                 </div> */}
-                                <button onClick={() => helpers.runRetrieve()}>Test Button</button>
-                                <button onClick={() => helpers.guestupdate()}>Guest Update Button</button>
-
-                                {/* <button type="submit" className="btn btn-default">Login</button> */}
-                                {/* </form> */}
+                            <button onClick={() => helpers.runRetrieve()}>Test Button</button>
+                            <button onClick={() => helpers.guestupdate()}>Guest Update Button</button>
+                            <button onClick={() => helpers.addnewuser(
+                                {
+                                    FirstName: "Kenny",
+                                    LastName: "Kingston",
+                                    Email: "ken@ken.com",
+                                    Address: "1234 Main Street",
+                                    Phone: "415-555-1414",
+                                    Password: "asdf",
+                                    Role: "R",
+                                    RestID: "1"
+                                }
+                            )}>Add Guest Button</button>
+                            {/* <button type="submit" className="btn btn-default">Login</button> */}
+                            {/* </form> */}
                             {/* </form> */}
                         </div>
                     </div>

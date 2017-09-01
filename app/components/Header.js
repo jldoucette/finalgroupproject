@@ -12,21 +12,32 @@ class Header extends React.Component{
   // Here we render the component
   render() {
     return (
-      <div className="col-md-12">
+      <div className="row">
         <nav className="navbar navbar-inverse">
           <div className="container-fluid">
             <div className="navbar-header">
-              <a className="navbar-brand" href="#">Last Call</a>
-            </div>
+              <a className="navbar-brand">Last Call</a>
+            </div>  
             <ul className="nav navbar-nav">
               <li><Link to='/'>Home</Link></li>
-              <li><Link to ='/info'>About Us</Link></li>
+              <li><Link to ='/aboutus'>About Us</Link></li>
               <li>Page 2</li>
-            </ul>
+            </ul>            
             <ul className="nav navbar-nav navbar-right">
+              <li className="dropdown">
+                <a className="dropdown-toggle" data-toggle="dropdown" href="#">Dashboard Actions
+                <span className="caret"></span></a>
+                <ul className="dropdown-menu">
+                  <li><Link to='/newplates'>Add New Plate</Link></li>
+                  <li>View Plates</li>
+                  <li>Something Else Here</li>
+                  <li> Setting </li>
+                </ul>
+              </li>                             
               <li><Link to='newuser'><span className="glyphicon glyphicon-user"></span> Sign Up </Link></li>
               <li><Link to='login'><span className="glyphicon glyphicon-log-in"></span> Login </Link></li>
             </ul>
+           
           </div>
         </nav>        
       </div>

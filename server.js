@@ -4,7 +4,7 @@ let bodyParser = require("body-parser");
 const path = require('path');
 let logger = require("morgan");
 let bcrypt = require("bcryptjs");
-
+const saltRounds = 10;
 //Express
 let app = express();
 
@@ -40,9 +40,12 @@ app.get("/login", function (req, res) {
   res.sendFile(__dirname + "/public/index.html");
 });
 
+app.get("/newuser", function (req, res) {
+  res.sendFile(__dirname + "/public/index.html");
+});
 
-//TESTING SERVER FILE BASED ROUTES
-//user/pass placeholders for future state transferred variables
+
+//Express Routes 
 var username = 'jd@jd.com';
 var password = 'asdf';
 app.get("/api/testRetrieve", function (req, res) {
@@ -62,23 +65,26 @@ app.get("/api/testRetrieve", function (req, res) {
 app.post("/api/newuser", function (req, res) {
   console.log("Request Body is: ");
   console.log(req.body);
-  // var AlteredPassword = req.body.password;
-  // bcrypt.hash(AlteredPassword, saltRounds, function (err, hash) { //bcrypt encrypts the password
+  var AlteredPassword = req.body.password;
+  console.log("Altered Password is: " + AlteredPassword);
+  bcrypt.hash(AlteredPassword, saltRounds, function (err, hash) { //bcrypt encrypts the password
+    console.log("hash is: " + hash);
     db.guests.create({
       username: req.body.username,
       first_name: req.body.first_name,
       last_name: req.body.last_name,
-      password:req.body.password,
+      password: hash,
       address: req.body.address,
       phone: req.body.phone,
       email: req.body.username,
       user_role: req.body.user_role,
       restID: req.body.restID
 
-  
-  }).then(function (data) {
-    res.json(data);
-  });
+
+    }).then(function (data) {
+      res.json(data);
+    })
+  })
 });
 
 app.post("/api/addplate", function (req, res) {
@@ -169,46 +175,120 @@ app.delete("/api/cancelplate/:id", function (req, res) {
 });
 
 app.put("/api/completeplate/:id", function (req, res) {
-    db.purchases.update({
-      completed: true
-    }, {
-        where: {
-          id: req.params.id
-        }
-      }).then(function (data) {
-        res.json(data);
-      });
-});
-
-app.post("/api/addrestaurant", function (req, res) {
-    db.restaurants.create({
-      restname: req.body.restname,
-      address: req.body.address,
-      hours: req.body.hours,
-      phone: req.body.phone,
-      email: req.body.email,
-      createdBy: siteUsername
+  db.purchases.update({
+    completed: true
+  }, {
+      where: {
+        id: req.params.id
+      }
     }).then(function (data) {
       res.json(data);
     });
 });
 
+app.post("/api/addrestaurant", function (req, res) {
+  db.restaurants.create({
+    restname: req.body.restname,
+    address: req.body.address,
+    hours: req.body.hours,
+    phone: req.body.phone,
+    email: req.body.email,
+    createdBy: siteUsername
+  }).then(function (data) {
+    res.json(data);
+  });
+});
+
 app.put("/api/updateguest", function (req, res) {
-    db.guests.update({
-      first_name: req.body.first_name,
-    }, {
+  db.guests.update({
+    first_name: req.body.first_name,
+  }, {
+      where: {
+        id: req.body.id,
+      }
+    }).then(function (data) {
+      res.json(data);
+    });
+});
+
+//Express Get Routes
+app.get("/api/plates", function (req, res) {
+  db.plates.findAll({
+    order: ['plate_name'],
+    where: { quantity: { $gt: 0 } }
+  }).then(function (data) {
+    res.json(data);
+  });
+});
+
+app.get('/api/pendingorders', function (req, res) {
+  db.purchases.findAll({
+    order: [['createdAt', 'ASC']],
+    where: {
+      'restaurantId': userRestaurant,
+      paid: true,
+      completed: false
+    },
+    include: [db.guests, db.plates]
+  }).then(function (data) {
+    res.json(data);
+  });
+
+});
+
+app.get('/api/purchaseoptions', function (req, res) {
+
+  db.plates.findAll({
+    //  order: [['restID', 'ASC']],
+    where: {
+      'quantity': { $gte: 1 },
+      createdate: todaysdate
+    },
+    include: [db.restaurants]
+
+  }).then(function (data) {
+    res.json(data);
+  });
+});
+
+  app.get('/api/purchasesummary', function (req, res) {
+      db.purchases.findAll({
+        order: [['restaurantId', 'ASC']],
         where: {
-          id: req.body.id,
-        }
+          guestId: userIdentity,
+          createdate: todaysdate,
+          // paid: false,
+          'quantity': { $gte: 1 }
+        },
+        include: [db.plates, db.restaurants]
+
       }).then(function (data) {
         res.json(data);
       });
-});
+    });
 
+      app.get("/api/restaurants", function (req, res) {
+          db.restaurants.findAll({
+            order: ['restname']
+          }).then(function (data) {
+            res.json(data);
+          });
+        });
 
-db.sequelize.sync().then(function () {
-  app.listen(PORT, function () {
-    console.log("App listening on PORT " + PORT);
-  });
-});
+          app.get('/api/admin', function (req, res) {
+              db.guests.findAll({
+                order: [
+                  ['user_role', 'ASC'],
+                  ["last_name", "ASC"]
+                ]
+              }).then(function (data) {
+                res.json(data);
+          });
+        });
+
+          db.sequelize.sync().then(function () {
+            app.listen(PORT, function () {
+              console.log("App listening on PORT " + PORT);
+            });
+          });
 

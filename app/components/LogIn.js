@@ -32,7 +32,7 @@ class LogIn extends React.Component {
                             <button onClick={() => helpers.addnewuser(
                                 {
                                     FirstName: "Kenny",
-                                    LastName: "Kingston",
+                                    LastName: "Kensington",
                                     Email: "ken@ken.com",
                                     Address: "1234 Main Street",
                                     Phone: "415-555-1414",
@@ -41,9 +41,12 @@ class LogIn extends React.Component {
                                     RestID: "1"
                                 }
                             )}>Add Guest Button</button>
+                            <button onClick={() => helpers.allguestlist()}>All Guest List Button</button>
+                            <button onClick={() => helpers.restaurantlist()}>Restaurant List Button</button>
                             {/* <button type="submit" className="btn btn-default">Login</button> */}
                             {/* </form> */}
                             {/* </form> */}
+
                         </div>
                     </div>
                 </div>

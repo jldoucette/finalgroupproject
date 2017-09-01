@@ -27,6 +27,20 @@ var helpers = {
             });
     },
 
+    allguestlist: function() {
+        axios.get('/api/admin').then(function (results){
+            console.log(results);
+            return(results);
+        })
+    },
+
+    restaurantlist: function() {
+        axios.get('api/restaurants').then(function (results){
+            console.log(results);
+            return(results);
+        })
+    },
+
     addnewuser: function (newuser) {
 
 

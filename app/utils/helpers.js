@@ -71,6 +71,19 @@ purchaseoptions: function() {
         console.log(results);
         return(results);
     })
+},
+
+purchaseplate: function(id) {
+    console.log("ID is: "+id);
+    return axios.put('/api/purchaseplates', {  
+    quantityordered: '1',
+    restID: '1',
+    id:id
+}).then(function (results){
+        console.log("Ran Helpers:purchaseoptions");
+        console.log(results);
+        return(results);
+    })
 }
 
 };

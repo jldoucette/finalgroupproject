@@ -23,7 +23,18 @@ class Testing extends React.Component {
                         });
                     }.bind(this));
         }
-    
+
+        purchaseplate(id) {
+            helpers.purchaseplate(id).then(function(response) {
+                console.log("Purchased Plate from Testing.js Component");
+                // console.log(response);
+                // console.log(response.data);
+                // this.setState({
+                //                 plates: response.data
+                //             });
+                //         }.bind(this));
+            });
+            } 
     render() {
         return (
             <div className="row">
@@ -71,6 +82,7 @@ class Testing extends React.Component {
                                     return (
                                         <li key={plate.id}>
                                             {plate.description}  {plate.protein}
+                                            <button onClick={()=>this.purchaseplate(plate.id)}>Purchase</button>
                                         </li>
 
                                     );

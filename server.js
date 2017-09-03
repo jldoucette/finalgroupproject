@@ -44,6 +44,9 @@ app.get("/newuser", function (req, res) {
   res.sendFile(__dirname + "/public/index.html");
 });
 
+app.get("/testing", function (req, res) {
+  res.sendFile(__dirname + "/public/index.html");
+});
 
 //Express Routes 
 var username = 'jd@jd.com';
@@ -241,8 +244,8 @@ app.get('/api/purchaseoptions', function (req, res) {
   db.plates.findAll({
     //  order: [['restID', 'ASC']],
     where: {
-      'quantity': { $gte: 1 },
-      createdate: todaysdate
+      'quantity': { $gte: 1 }
+      // createdate: todaysdate
     },
     include: [db.restaurants]
 

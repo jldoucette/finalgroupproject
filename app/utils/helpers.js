@@ -62,9 +62,16 @@ var helpers = {
                 console.log("completed post /api/newuser");
                 return (results);
             });
-    }
+    },
+
+
+purchaseoptions: function() {
+    return axios.get('/api/purchaseoptions').then(function (results){
+        console.log("Ran Helpers:purchaseoptions");
+        console.log(results);
+        return(results);
+    })
+}
+
 };
-
-
-
 module.exports = helpers;

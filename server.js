@@ -48,6 +48,14 @@ app.get("/testing", function (req, res) {
   res.sendFile(__dirname + "/public/index.html");
 });
 
+app.get("/addplate", function (req, res) {
+  res.sendFile(__dirname + "/public/index.html");
+});
+
+app.get("/addrestaurant", function (req, res) {
+  res.sendFile(__dirname + "/public/index.html");
+});
+
 //Express Routes 
 var username = 'jd@jd.com';
 var password = 'asdf';
@@ -93,25 +101,29 @@ app.post("/api/newuser", function (req, res) {
 });
 
 app.post("/api/addplate", function (req, res) {
+  console.log("Request Body");
+  console.log(req.body);
   var postdate = new Date();
   var createDate = postdate.getFullYear() + "-" + (1 + postdate.getMonth()) + "-" + postdate.getDate();
   console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&Create Date: " + createDate);
   db.plates.create({
-    plate_name: req.body.plate_name,
-    protein: req.body.protein,
-    side1: req.body.side1,
-    side2: req.body.side2,
-    side3: req.body.side3,
-    price: req.body.price,
-    quantity: req.body.quantity,
-    description: req.body.description,
-    createdby: req.body.createdby,
+    plate_name: req.body.PlateName,
+    protein: req.body.Protein,
+    side1: req.body.Side1,
+    side2: req.body.Side2,
+    side3: req.body.Side3,
+    price: req.body.Price,
+    quantity: req.body.Quantity,
+    description: req.body.Description,
+    createdby: '1',
     createdate: createDate,
-    preptime: req.body.preptime,
-    delaytime: req.body.delaytime,
-    restaurantId: userRestaurant
+    preptime: req.body.PrepTime,
+    delaytime: req.body.DelayTime,
+    restaurantId: '1'
     // GuestID:userIdentity
   }).then(function (data) {
+    console.log("Data is:");
+    console.log(data);
     res.json(data);
   });
 });
@@ -219,12 +231,12 @@ app.put("/api/completeplate/:id", function (req, res) {
 
 app.post("/api/addrestaurant", function (req, res) {
   db.restaurants.create({
-    restname: req.body.restname,
-    address: req.body.address,
-    hours: req.body.hours,
-    phone: req.body.phone,
-    email: req.body.email,
-    createdBy: siteUsername
+    restname: req.body.RestaurantName,
+    address: req.body.Address,
+    hours: req.body.Hours,
+    phone: req.body.Phone,
+    email: req.body.Email,
+    createdBy: '1'
   }).then(function (data) {
     res.json(data);
   });

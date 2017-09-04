@@ -27,17 +27,17 @@ var helpers = {
             });
     },
 
-    allguestlist: function() {
-        axios.get('/api/admin').then(function (results){
+    allguestlist: function () {
+        axios.get('/api/admin').then(function (results) {
             console.log(results);
-            return(results);
+            return (results);
         })
     },
 
-    restaurantlist: function() {
-        axios.get('api/restaurants').then(function (results){
+    restaurantlist: function () {
+        axios.get('api/restaurants').then(function (results) {
             console.log(results);
-            return(results);
+            return (results);
         })
     },
 
@@ -65,26 +65,73 @@ var helpers = {
     },
 
 
-purchaseoptions: function() {
-    return axios.get('/api/purchaseoptions').then(function (results){
-        console.log("Ran Helpers:purchaseoptions");
-        console.log(results);
-        return(results);
-    })
-},
+    purchaseoptions: function () {
+        return axios.get('/api/purchaseoptions').then(function (results) {
+            console.log("Ran Helpers:purchaseoptions");
+            console.log(results);
+            return (results);
+        })
+    },
 
-purchaseplate: function(id) {
-    console.log("ID is: "+id);
-    return axios.put('/api/purchaseplates', {  
-    quantityordered: '1',
-    restID: '1',
-    id:id
-}).then(function (results){
-        console.log("Ran Helpers:purchaseoptions");
-        console.log(results);
-        return(results);
-    })
-}
+    purchaseplate: function (id) {
+        console.log("ID is: " + id);
+        return axios.put('/api/purchaseplates', {
+            quantityordered: '1',
+            restID: '1',
+            id: id
+        }).then(function (results) {
+            console.log("Ran Helpers:purchaseoptions");
+            console.log(results);
+            return (results);
+        })
+    },
 
+    addplate: function (platedetails) {
+
+        axios
+            .post('/api/addplate',
+            {
+
+                PlateName: platedetails.PlateName,
+                Description: platedetails.Description,
+                Protein: platedetails.Protein,
+                Side1: platedetails.Side1,
+                Side2: platedetails.Side2,
+                Side3: platedetails.Side3,
+                Price: platedetails.Price,
+                Quantity: platedetails.Quantity,
+                PrepTime: platedetails.PrepTime,
+                DelayTime: platedetails.DelayTime,
+                CreatedBy: platedetails.CreatedBy,
+
+            })
+            .then(function (results) {
+                console.log("completed post /api/addplate");
+                var testtempreturn = "OK";
+                console.log(results);
+                console.log(testtempreturn);
+                return (testtempreturn);
+            });
+    },
+
+    addrestaurant: function (restaurantdetails) {
+        
+                axios
+                    .post('/api/addrestaurant',
+                    {
+                        RestaurantName: restaurantdetails.RestaurantName,
+                        Address: restaurantdetails.Address,
+                        Hours: restaurantdetails.Hours,
+                        Phone: restaurantdetails.Phone,
+                        Email: restaurantdetails.Email,
+                    })
+                    .then(function (results) {
+                        console.log("completed post /api/addrestaurant");
+                        var testtempreturn = "OK";
+                        console.log(results);
+                        console.log(testtempreturn);
+                        return (testtempreturn);
+                    });
+            },
 };
 module.exports = helpers;

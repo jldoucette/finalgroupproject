@@ -3,10 +3,12 @@ import React from "react";
 // import { Link } from 'react-router-dom';
 import helpers from "../utils/helpers.js";
 
+var checkRestaurantState;
 class AddRestaurant extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            restaurants: [],
             RestaurantName: "",
             Address: "",
             Hours: "",
@@ -17,6 +19,56 @@ class AddRestaurant extends React.Component {
 
         this.collectInfo = this.collectInfo.bind(this);
     }
+
+    getInitialState()  {
+        return { restaurants: "" };
+      }
+
+    componentDidMount() {
+        helpers.restaurantlist().then(function (response) {
+            console.log("Got Restaurants from AddRestaurant.js Component");
+            console.log(response);
+            console.log(response.data);
+            this.setState({
+                restaurants: response.data
+            });
+            checkRestaurantState=this.state.restaurants;
+        }.bind(this));
+    }
+
+    // componentDidUpdate(prevState) {
+    //     if(this.state.restaurant !== checkRestaurantState) {
+    //     console.log("State has changed.");
+    //     this.getrestaurant();
+    //     }
+    //     else {
+    //     console.log("State has NOT changed.") ; 
+    //     }
+        // console.log("componentdidupdate this.state "+JSON.stringify(this.state.restaurants));
+        // console.log("componentdidupdate previousState "+JSON.stringify(prevState));        
+        // if(this.state !== previousState) {
+            // helpers.restaurantlist().then(function (response) {
+            //     console.log("Got updated Restaurants from AddRestaurant.js Component");
+            //     console.log(response);
+            //     console.log(response.data);
+            //     this.setState({
+            //         restaurants: response.data
+            //     });
+            // }.bind(this));
+        // }
+        // }
+
+        //    getrestaurant() {
+        //     helpers.restaurantlist().then(function (response) {
+        //         console.log("Got updated Restaurants from AddRestaurant.js Component");
+        //         console.log(response);
+        //         console.log(response.data);
+        //         this.setState({
+        //             restaurants: response.data
+        //         });
+        //         checkRestaurantState=response.data;
+        //     }.bind(this));
+        // }
 
     collectInfo(event) {
         event.preventDefault();
@@ -36,14 +88,34 @@ class AddRestaurant extends React.Component {
         helpers.addrestaurant(restaurantinput).then(function () {
             console.log("Add Restaurant Component Completed");
         });
+    
     }
 
     render() {
         return (
             <div className="row">
-                <div className="col-md-10">
-                    <h2>Add Restaurant Page</h2>
-                    <div id="addrestaurantpage">
+                 <h2>Add Restaurant Page</h2>
+                <div className="col-md-6">
+                    <div className="row" id="restaurantlist">
+                        <h2>Current Restaurants</h2>
+                        <ul>
+                            {this.state.restaurants.map((restaurant, index) => {
+                                return (
+                                    <li key={restaurant.id}>
+                                        Restaurant Name: {restaurant.restname}<br />
+                                        Address: {restaurant.address}<br />
+                                        Phone: {restaurant.phone}<br />
+                                        Hours: {restaurant.hours}<br />
+                                        Email: {restaurant.email}<br />
+                                        Created By: {restaurant.createdBy}
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </div>
+                    </div>
+                    <div className="col-md-6">
+                    <div id="addrestaurantsection">
                         <div className="newrestaurant">
                             <h2>Create New Restaurant</h2>
 
@@ -107,7 +179,7 @@ class AddRestaurant extends React.Component {
 
                                     <div className='col-md-10'>
                                         <button className="btn btn-default btn-large" onClick={this.collectInfo} type="submit">Create Restaurant</button>
-                                        <a className="btn btn-default" href="/addrestaurant">Add Restaurant Page</a>
+                                        <a className="btn btn-default" href="/addrestaurant">Refresh Restaurant Page</a>
                                     </div>
 
                                 </div>

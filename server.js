@@ -44,10 +44,15 @@ app.get("/newuser", function (req, res) {
   res.sendFile(__dirname + "/public/index.html");
 });
 
+app.get("/testing", function (req, res) {
+  res.sendFile(__dirname + "/public/index.html");
+});
 
 //Express Routes 
 var username = 'jd@jd.com';
 var password = 'asdf';
+var newQuantity;
+var todaysdate='2017-09-03';
 app.get("/api/testRetrieve", function (req, res) {
   console.log("Got to /api/testRetrieve");
   db.guests.findOne({
@@ -112,10 +117,11 @@ app.post("/api/addplate", function (req, res) {
 });
 
 app.put("/api/purchaseoptions/:id", function (req, res) {
-  var newQuantity = parseInt(req.body.priorquantity) - parseInt(req.body.quantityordered);
+  newQuantity = parseInt(req.body.priorquantity) - parseInt(req.body.quantityordered);
+  
   if (newQuantity >= 0) {
     db.purchases.create({
-      guestId: userIdentity,
+      guestId: '1', 
       quantity: req.body.quantityordered,
       restaurantId: req.body.restID,
       plateId: req.params.id,
@@ -138,19 +144,44 @@ app.put("/api/purchaseoptions/:id", function (req, res) {
   }
 });
 
-app.put("/api/purchaseplates/:id", function (req, res) {
-  db.purchases.update({
-    paid: true
-  }, {
-      where: {
-        id: req.params.id
-      }
-    }).then(function (data) {
-      res.JSON({
-        id: req.params.id,
-        paid: true
-      });
-    });
+// app.put("/api/purchaseplates", function (req, res) {
+//   var id=req.params.id;
+//   console.log(id);
+//   db.purchases.update({
+//     paid: true
+//   }, {
+//       where: {
+//         id: req.params.id
+//       }
+//     }).then(function (data) {
+//       res.json({
+//         id: req.params.id,
+//         paid: true
+//       });
+//     });
+// });
+
+app.put("/api/purchaseplates", function (req, res) {
+  var id=req.body.id;
+  var newQuantity='9';
+  console.log("Passed thru id param is: "+id);
+db.purchases.create({
+  guestId: '1',
+  quantity: req.body.quantityordered,
+  restaurantId: req.body.restID,
+  plateId: id,
+  createdate: todaysdate,
+  paid: false,
+  completed: false
+}), db.plates.update({
+  quantity: newQuantity
+}, {
+    where: {
+      id: id
+    }
+  }).then(function (data) {
+    res.json(data);
+  });
 });
 
 app.delete("/api/cancelplate/:id", function (req, res) {
@@ -241,8 +272,8 @@ app.get('/api/purchaseoptions', function (req, res) {
   db.plates.findAll({
     //  order: [['restID', 'ASC']],
     where: {
-      'quantity': { $gte: 1 },
-      createdate: todaysdate
+      'quantity': { $gte: 1 }
+      // createdate: todaysdate
     },
     include: [db.restaurants]
 

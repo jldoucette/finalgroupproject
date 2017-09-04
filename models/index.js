@@ -39,7 +39,7 @@ db.purchases.belongsTo(db.guests);
 // db.purchases.belongsToMany(db.plates, {through: "plates_purchases"});
 // db.plates.belongsToMany(db.purchases, {through: "plates_purchases"});
 db.restaurants.hasMany(db.plates,{constraints: false}, {as: "RestID"});
-// db.plates.belongsTo(db.restaurants);
+db.plates.belongsTo(db.restaurants);
 db.plates.hasMany(db.purchases);
 db.purchases.belongsTo(db.plates);
 // db.purchases.hasMany(db.plates);

@@ -10,6 +10,7 @@ import Header from './Header.js';
 import LogIn from './LogIn.js';
 import NewUser from './NewUser.js';
 import AboutUs from './AboutUs.js';
+import Testing from './Testing.js';
 
 import Plates from './Plates.js';
 
@@ -26,6 +27,7 @@ class Main extends React.Component {
                     <Route exact path="/newplates" component={Plates} />
                     <Route exact path="/login" component={LogIn} />
                     <Route exact path="/newuser" component={NewUser} />
+                    <Route exact path="/testing" component={Testing} />
                 </Switch>
 
             </div>

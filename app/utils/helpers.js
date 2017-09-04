@@ -35,7 +35,7 @@ var helpers = {
     },
 
     restaurantlist: function () {
-        axios.get('api/restaurants').then(function (results) {
+       return axios.get('api/restaurants').then(function (results) {
             console.log(results);
             return (results);
         })

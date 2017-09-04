@@ -56,6 +56,10 @@ app.get("/addrestaurant", function (req, res) {
   res.sendFile(__dirname + "/public/index.html");
 });
 
+app.get("/restaurants", function (req, res) {
+  res.sendFile(__dirname + "/public/index.html");
+});
+
 //Express Routes 
 var username = 'jd@jd.com';
 var password = 'asdf';

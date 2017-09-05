@@ -83,7 +83,7 @@ class AddRestaurant extends React.Component {
             Email: this.state.Email,
             CreatedBy: this.state.CreatedBy,
         }
-        console.log("This plateinput passed");
+        console.log("This restaurantinput passed");
         console.log(restaurantinput);
         helpers.addrestaurant(restaurantinput).then(function () {
             console.log("Add Restaurant Component Completed");

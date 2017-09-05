@@ -3,6 +3,21 @@ var bcrypt = require("bcryptjs");
 
 var helpers = {
 
+    loginuser2: function () {
+       var response="Hello there. This is a response!";
+        return (response);
+        
+    },
+
+    loginuser: function (logininput) {
+        console.log("Logininput "+JSON.stringify(logininput));
+        axios.put('/api/login',{logininput}).then(function (response) {
+            console.log("Ran Helpers:/api/login");
+            console.log(response);
+            return (response);
+        })
+    },
+
     runRetrieve: function () {
         console.log("Running testRetrieve");
         axios.get('/api/testRetrieve').then(function (results) {

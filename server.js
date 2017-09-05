@@ -27,6 +27,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
+
+//Variables
+var userLoggedIn = false;
+var userIdentity;
+var userRole;
+var today;
+var todaysdate;
+var siteUsername;
+var userFirstName;
+var userLastName;
+var userAddress;
+var usereMail;
+var userPhone;
+var userRestaurant;
+var newQuantity;
+
 // Any non API GET routes will be directed to our React App and handled by React Router
 // app.get("/*", function(req, res) {
 //   res.sendFile(path.join(__dirname, "/public/index.html"))
@@ -60,11 +76,12 @@ app.get("/restaurants", function (req, res) {
   res.sendFile(__dirname + "/public/index.html");
 });
 
+app.get("/plates", function (req, res) {
+  res.sendFile(__dirname + "/public/index.html");
+});
+
 //Express Routes 
-var username = 'jd@jd.com';
-var password = 'asdf';
-var newQuantity;
-var todaysdate='2017-09-03';
+
 app.get("/api/testRetrieve", function (req, res) {
   console.log("Got to /api/testRetrieve");
   db.guests.findOne({
@@ -78,6 +95,99 @@ app.get("/api/testRetrieve", function (req, res) {
       res.json(data);
     });
 });
+
+// Begin Login Paste
+
+app.put("/api/login", function (req, res) {
+  console.log("^^^^^^^^^^^^^^^^Got to Login Put");
+    console.log(req.body);
+  today = new Date();
+  todaysdate = today.getFullYear() + "-" + (1 + today.getMonth()) + "-" + today.getDate();
+  console.log("++++++++++++++++++++++++++Todays Date is " + todaysdate);
+  console.log("req.body.Username is "+req.body.logininput.Username);
+  db.guests.findOne({
+    where:
+    {
+      username: req.body.logininput.Username
+    }
+  }).then(project => {
+    // }).then(function(data){
+
+    if (project != null) {
+      //project is the body of the object that is returned if the user exists
+      bcrypt.compare(req.body.logininput.Password, project.dataValues.password, function (err, matches) {
+        if (err) {
+          console.log('Error while checking password');
+        }
+        else if (matches) {
+          console.log('The password matches!');
+          siteUsername = req.body.logininput.Username;
+          db.guests.findOne({
+            where: {
+              username: siteUsername
+            }
+          }).then(function (data) {
+            console.log("Password was matched");
+            console.log("User"+siteUsername);
+            console.log(data.id);
+            console.log(data.first_name);
+            console.log(data.last_name);
+            console.log(data.address);
+            console.log(data.email);
+            console.log(data.phone);
+            console.log(data.restaurantID);
+            console.log(data.user_role);
+            userLoggedIn = true;
+            userIdentity = data.id;
+            userFirstName = data.first_name;
+            userLastName = data.last_name;
+            userAddress = data.address;
+            usereMail = data.email;
+            userPhone = data.phone;
+            userRestaurant = data.restID;
+            userRole = data.user_role;
+            console.log(userLoggedIn);
+            console.log(userIdentity);
+            console.log(userFirstName);
+            console.log(userLastName);
+            console.log(userAddress);
+            console.log(usereMail);
+            console.log(userPhone);
+            console.log(userRestaurant);
+            console.log(userRole);
+
+            // if (userRole == "R") {
+            //   console.log("User Role was R");
+            //   res.redirect("/pendingorders");
+            // }
+            // if (userRole == "U") {
+            //   res.redirect("/purchaseoptions");
+            // }
+            // if (userRole == "A") {
+            //   res.redirect("/admin");
+            // }
+          });
+        }
+
+        else if (!matches) {
+          userLoggedIn = false;
+          console.log('The password does NOT match!');
+        }
+      });
+    }
+    else {
+      userLoggedIn = false;
+      console.log('The password check failed to match!');
+    }
+  });
+});
+
+
+
+
+
+// End of Login Paste
+
 
 app.post("/api/newuser", function (req, res) {
   console.log("Request Body is: ");
@@ -119,12 +229,12 @@ app.post("/api/addplate", function (req, res) {
     price: req.body.Price,
     quantity: req.body.Quantity,
     description: req.body.Description,
-    createdby: '1',
+    createdby: siteUsername,
     createdate: createDate,
     preptime: req.body.PrepTime,
     delaytime: req.body.DelayTime,
-    restaurantId: '1'
-    // GuestID:userIdentity
+    restaurantId: userRestaurant
+    
   }).then(function (data) {
     console.log("Data is:");
     console.log(data);
@@ -137,7 +247,7 @@ app.put("/api/purchaseoptions/:id", function (req, res) {
   
   if (newQuantity >= 0) {
     db.purchases.create({
-      guestId: '1', 
+      guestId: userIdentity, 
       quantity: req.body.quantityordered,
       restaurantId: req.body.restID,
       plateId: req.params.id,
@@ -182,7 +292,7 @@ app.put("/api/purchaseplates", function (req, res) {
   var newQuantity='9';
   console.log("Passed thru id param is: "+id);
 db.purchases.create({
-  guestId: '1',
+  guestId: userIdentity,
   quantity: req.body.quantityordered,
   restaurantId: req.body.restID,
   plateId: id,
@@ -240,7 +350,7 @@ app.post("/api/addrestaurant", function (req, res) {
     hours: req.body.Hours,
     phone: req.body.Phone,
     email: req.body.Email,
-    createdBy: '1'
+    createdBy: siteUsername
   }).then(function (data) {
     res.json(data);
   });

@@ -14,7 +14,7 @@ import Testing from './Testing.js';
 import AddPlate from './AddPlate.js';
 import AddRestaurant from './AddRestaurant.js';
 import Restaurants from './Restaurants.js';
-import Plates from './Plates.js';
+
 
 
 
@@ -33,6 +33,7 @@ class Main extends React.Component {
                     <Route exact path="/addplate" component={AddPlate} />
                     <Route exact path="/addrestaurant" component={AddRestaurant} />
                     <Route exact path="/restaurants" component={Restaurants} />
+    
                 </Switch>
 
             </div>

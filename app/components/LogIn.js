@@ -3,11 +3,43 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import helpers from "../utils/helpers.js";
 import NewUser from "./NewUser.js";
+import axios from "axios";
 
 
 class LogIn extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
+        this.state = {
+            Username: "",
+            Password: ""
+        };
+        this.collectInfo = this.collectInfo.bind(this);
+    }
+
+    collectInfo(event) {
+        event.preventDefault();
+        console.log("This.state");
+        console.log(this.state);
+
+        var logininput = {
+            Username: this.state.Username,
+            Password: this.state.Password,
+        }
+        console.log("This logininput passed");
+        console.log(logininput);
+        
+        axios.put('/api/login',{logininput}).then(function (response) {
+            console.log("Ran Helpers:/api/login");
+            console.log(response);
+            return (response);
+        })
+
+
+        // helpers.loginuser(logininput).then((response) => {
+        //     console.log("Login Component Completed");
+        //     console.log(response);
+        // }); 
+
     }
 
     render() {
@@ -16,38 +48,36 @@ class LogIn extends React.Component {
                 <div className="col-md-4 col-md-offset-5">
                     <div id="loginpage">
                         <h2>Login Page</h2>
-                        <div className='col-md-8'>
-                            {/* <form className="create-update-form" action="/login/?_method=PUT" method="POST"> */}
-                            {/* <form className="form-inline">
-                                <div className="form-group">
-                                    <label for="username">Username</label>
-                                    <input type="text" id="username" name="username" />
-                                </div>
-                                <div className="form-group">
-                                    <label for="password">Password</label>
-                                    <input type="password" id="password" name="password" />
-                                </div> */}
-                            <button onClick={() => helpers.runRetrieve()}>Test Button</button>
-                            <button onClick={() => helpers.guestupdate()}>Guest Update Button</button>
-                            <button onClick={() => helpers.addnewuser(
-                                {
-                                    FirstName: "Kenny",
-                                    LastName: "Kensington",
-                                    Email: "ken@ken.com",
-                                    Address: "1234 Main Street",
-                                    Phone: "415-555-1414",
-                                    Password: "asdf",
-                                    Role: "R",
-                                    RestID: "1"
-                                }
-                            )}>Add Guest Button</button>
-                            <button onClick={() => helpers.allguestlist()}>All Guest List Button</button>
-                            <button onClick={() => helpers.restaurantlist()}>Restaurant List Button</button>
-                            {/* <button type="submit" className="btn btn-default">Login</button> */}
-                            {/* </form> */}
-                            {/* </form> */}
 
-                        </div>
+                        <form className="create-update-form" >
+                            <div className="form-horizontal">
+                                <div className="form-group form-group-lg">
+                                    <label className="col-md-3 control-label" htmlFor="username">Username</label>
+                                    <div className="col-md-4">
+                                        <input type="text" id="username" value={this.state.Phone} name="username" onChange={(event) => {
+                                            this.setState({
+                                                Username: event.target.value
+                                            })
+                                        }} />
+                                    </div>
+                                </div>
+
+                                <div className="form-group form-group-lg">
+                                    <label className="col-md-3 control-label" htmlFor="password">Password</label>
+                                    <div className="col-md-4">
+                                        <input type="password" id="password" value={this.state.Password} name="password" onChange={(event) => {
+                                            this.setState({
+                                                Password: event.target.value
+                                            })
+                                        }} />
+                                    </div>
+                                </div>
+
+                                <div className='col-md-10'>
+                                    <button className="btn btn-default btn-large" onClick={this.collectInfo} type="submit">Login</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

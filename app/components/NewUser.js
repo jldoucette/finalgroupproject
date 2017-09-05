@@ -1,5 +1,6 @@
 // Include React
 import React from "react";
+import helpers from "../utils/helpers.js";
 
 // Create the Main component
 class NewUser extends React.Component{
@@ -38,20 +39,23 @@ class NewUser extends React.Component{
 
     enterInfo(event) {
         event.preventDefault();
-        var foo = {
-            FirstName: event.target.value,
-            LastName: event.target.value,
-            Email: event.target.value,
-            Address: event.target.value,
-            Phone: event.target.value,
-            Password: event.target.value,
-            Role: event.target.value,
-            RestID: event.target.value 
+        var newuserinput = {
+            FirstName: this.state.FirstName,
+            LastName: this.state.LastName,
+            Email: this.state.Email,
+            Address: this.state.Address,
+            Phone: this.state.Phone,
+            Password: this.state.Password,
+            Role: this.state.Role,
+            RestID: this.state.RestID 
         }       
         console.log(this.state);
 
-        console.log(foo);
-
+        console.log("This newuserinput passed");
+        console.log(newuserinput);
+        helpers.addnewuser(newuserinput).then(function () {
+            console.log("Add New User Component Completed");
+        });
         
     }
 

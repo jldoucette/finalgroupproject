@@ -14,7 +14,7 @@ import Testing from './Testing.js';
 import AddPlate from './AddPlate.js';
 import AddRestaurant from './AddRestaurant.js';
 import Restaurants from './Restaurants.js';
-
+import Plates from './Plates.js';
 
 
 

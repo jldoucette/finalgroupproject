@@ -76,9 +76,6 @@ app.get("/restaurants", function (req, res) {
   res.sendFile(__dirname + "/public/index.html");
 });
 
-app.get("/plates", function (req, res) {
-  res.sendFile(__dirname + "/public/index.html");
-});
 
 //Express Routes 
 

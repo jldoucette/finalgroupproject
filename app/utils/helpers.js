@@ -4,14 +4,14 @@ var bcrypt = require("bcryptjs");
 var helpers = {
 
     loginuser2: function () {
-       var response="Hello there. This is a response!";
+        var response = "Hello there. This is a response!";
         return (response);
-        
+
     },
 
     loginuser: function (logininput) {
-        console.log("Logininput "+JSON.stringify(logininput));
-        axios.put('/api/login',{logininput}).then(function (response) {
+        console.log("Logininput " + JSON.stringify(logininput));
+       return axios.put('/api/login', { logininput }).then(function (response) {
             console.log("Ran Helpers:/api/login");
             console.log(response);
             return (response);
@@ -50,7 +50,7 @@ var helpers = {
     },
 
     restaurantlist: function () {
-       return axios.get('api/restaurants').then(function (results) {
+        return axios.get('api/restaurants').then(function (results) {
             console.log(results);
             return (results);
         })
@@ -88,12 +88,12 @@ var helpers = {
         })
     },
 
-    purchaseplate: function (id,restid,priorquantity,quantity) {
+    purchaseplate: function (id, restid, priorquantity, quantity) {
         // var priorquantity="100";
         console.log("ID is: " + id);
         console.log("RestID is: " + restid);
         console.log("Quantity is: " + quantity);
-        console.log("Prior Quantity is: "+priorquantity);
+        console.log("Prior Quantity is: " + priorquantity);
         return axios.put('/api/purchaseplates', {
             quantityordered: quantity,
             restID: restid,
@@ -135,23 +135,18 @@ var helpers = {
     },
 
     addrestaurant: function (restaurantdetails) {
-        
-                axios
-                    .post('/api/addrestaurant',
-                    {
-                        RestaurantName: restaurantdetails.RestaurantName,
-                        Address: restaurantdetails.Address,
-                        Hours: restaurantdetails.Hours,
-                        Phone: restaurantdetails.Phone,
-                        Email: restaurantdetails.Email,
-                    })
-                    .then(function (results) {
-                        console.log("completed post /api/addrestaurant");
-                        var testtempreturn = "OK";
-                        console.log(results);
-                        console.log(testtempreturn);
-                        return (testtempreturn);
-                    });
-            },
+        return axios
+            .post('/api/addrestaurant',
+            {
+                RestaurantName: restaurantdetails.RestaurantName,
+                Address: restaurantdetails.Address,
+                Hours: restaurantdetails.Hours,
+                Phone: restaurantdetails.Phone,
+                Email: restaurantdetails.Email,
+            })
+            .then(function (results) {
+                console.log("completed post /api/addrestaurant");
+            });
+    },
 };
 module.exports = helpers;

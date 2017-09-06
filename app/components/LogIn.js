@@ -1,17 +1,18 @@
 // Include React
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link, Redirect} from 'react-router-dom';
 import helpers from "../utils/helpers.js";
 import NewUser from "./NewUser.js";
 import axios from "axios";
-
+var userRole;
 
 class LogIn extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             Username: "",
-            Password: ""
+            Password: "",
+            redirect: false
         };
         this.collectInfo = this.collectInfo.bind(this);
     }
@@ -27,22 +28,43 @@ class LogIn extends React.Component {
         }
         console.log("This logininput passed");
         console.log(logininput);
-        
-        axios.put('/api/login',{logininput}).then(function (response) {
+        console.log(this.state.redirect);
+        axios.put('/api/login', { logininput }).then((response) => {
+            userRole=response.data.user_role;
+            this.setState({redirect:true});
             console.log("Ran Helpers:/api/login");
             console.log(response);
-            return (response);
+            // <Redirect to="/purchaseplates"/>
+            // <Route exact path="/" render={() => (
+            //     <Redirect to="/purchaseplates" />
+            // )} />
         })
 
 
         // helpers.loginuser(logininput).then((response) => {
         //     console.log("Login Component Completed");
         //     console.log(response);
-        // }); 
+        //     <Route exact path="/" render={() => (
+        //         <Redirect to="/purchaseplates" />
+        //     )} />
+        // });
+
+
 
     }
 
     render() {
+        const {redirect} = this.state;
+        if (redirect && userRole=='U') {
+            return <Redirect to='/purchaseplates'/>;
+        }
+        if (redirect && userRole=='A') {
+            return <Redirect to='/addrestaurant'/>;
+        }
+        if (redirect && userRole=='R') {
+            return <Redirect to='/addplate'/>;
+        }
+
         return (
             <div className="row">
                 <div className="col-md-4 col-md-offset-5">
@@ -74,7 +96,7 @@ class LogIn extends React.Component {
                                 </div>
 
                                 <div className='col-md-10'>
-                                    <button className="btn btn-default btn-large" onClick={this.collectInfo} type="submit">Login</button>
+                                    <button className="btn btn-default btn-large" onClick={this.collectInfo.bind(this)} type="submit">Login</button>
                                 </div>
                             </div>
                         </form>
@@ -86,3 +108,13 @@ class LogIn extends React.Component {
 }
 
 export default LogIn;
+
+// import { Route, Redirect } from 'react-router'
+
+// <Route exact path="/" render={() => (
+//     loggedIn ? (
+//         <Redirect to="/dashboard" />
+//     ) : (
+//             <PublicHomePage />
+//         )
+// )} />

@@ -16,18 +16,21 @@ class PurchasePlates extends React.Component {
 
 
     purchaseplate(id, restid, priorquantity, quantity) {
-        helpers.purchaseplate(id,restid,priorquantity,quantity).then(function (response) {
+        helpers.purchaseplate(id,restid,priorquantity,quantity).then((response)=> {
             console.log("Purchased Plate from PurchasePlates.js Component");
             console.log(response);
             console.log(response.data);
+            this.getplates();
             // this.setState({
             //     plates: response.data
             // });
-        }.bind(this));
+        });
     }
 
+    
+
     getplates() {
-        helpers.purchaseoptions().then(function (response) {
+        helpers.purchaseoptions().then((response)=> {
             console.log("Got Plates from PurchasePlates.js Component");
             console.log(response);
             console.log(response.data);
@@ -35,7 +38,7 @@ class PurchasePlates extends React.Component {
                 plates: response.data
             });
             console.log(JSON.stringify(this.state.plates));
-        }.bind(this));
+        });
     }
     componentDidMount() {
         this.getplates();

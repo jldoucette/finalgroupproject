@@ -25,15 +25,16 @@ class AddRestaurant extends React.Component {
       }
 
     componentDidMount() {
-        helpers.restaurantlist().then(function (response) {
-            console.log("Got Restaurants from AddRestaurant.js Component");
-            console.log(response);
-            console.log(response.data);
-            this.setState({
-                restaurants: response.data
-            });
-            checkRestaurantState=this.state.restaurants;
-        }.bind(this));
+        this.getrestaurant();
+        // helpers.restaurantlist().then(function (response) {
+        //     console.log("Got Restaurants from AddRestaurant.js Component");
+        //     console.log(response);
+        //     console.log(response.data);
+        //     this.setState({
+        //         restaurants: response.data
+        //     });
+        //     checkRestaurantState=this.state.restaurants;
+        // }.bind(this));
     }
 
     // componentDidUpdate(prevState) {
@@ -58,17 +59,17 @@ class AddRestaurant extends React.Component {
         // }
         // }
 
-        //    getrestaurant() {
-        //     helpers.restaurantlist().then(function (response) {
-        //         console.log("Got updated Restaurants from AddRestaurant.js Component");
-        //         console.log(response);
-        //         console.log(response.data);
-        //         this.setState({
-        //             restaurants: response.data
-        //         });
-        //         checkRestaurantState=response.data;
-        //     }.bind(this));
-        // }
+           getrestaurant() {
+            helpers.restaurantlist().then(function (response) {
+                console.log("Got updated Restaurants from AddRestaurant.js Component");
+                console.log(response);
+                console.log(response.data);
+                this.setState({
+                    restaurants: response.data
+                });
+                checkRestaurantState=response.data;
+            }.bind(this));
+        }
 
     collectInfo(event) {
         event.preventDefault();
@@ -85,7 +86,8 @@ class AddRestaurant extends React.Component {
         }
         console.log("This restaurantinput passed");
         console.log(restaurantinput);
-        helpers.addrestaurant(restaurantinput).then(function (response) {
+        helpers.addrestaurant(restaurantinput).then((response) => {
+            this.getrestaurant();
             console.log("Add Restaurant Component Completed");
         });
     

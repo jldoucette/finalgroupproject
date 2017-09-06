@@ -57,7 +57,12 @@ app.get("/login", function (req, res) {
 });
 
 app.get("/newuser", function (req, res) {
-  res.sendFile(__dirname + "/public/index.html");
+  if(userLoggedIn) {
+    res.sendFile(__dirname + "/public/index.html");
+    }
+    else {
+      res.redirect('/login');
+    }
 });
 
 app.get("/testing", function (req, res) {
@@ -65,19 +70,39 @@ app.get("/testing", function (req, res) {
 });
 
 app.get("/addplate", function (req, res) {
+  if(userLoggedIn) {
   res.sendFile(__dirname + "/public/index.html");
+  }
+  else {
+    res.redirect('/login');
+  }
 });
 
 app.get("/addrestaurant", function (req, res) {
+if(userLoggedIn && userRole=='A') {
   res.sendFile(__dirname + "/public/index.html");
+  }
+  else {
+    res.redirect('/login');
+  }
 });
 
 app.get("/restaurants", function (req, res) {
+if(userLoggedIn) {
   res.sendFile(__dirname + "/public/index.html");
+  }
+  else {
+    res.redirect('/login');
+  }
 });
 
 app.get("/purchaseplates", function (req, res) {
+if(userLoggedIn && userRole=="U") {
   res.sendFile(__dirname + "/public/index.html");
+  }
+  else {
+    res.redirect('/login');
+  }
 });
 
 

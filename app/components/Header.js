@@ -36,6 +36,7 @@ class Header extends React.Component{
               </li>                             
               <li><Link to='/newuser'><span className="glyphicon glyphicon-user"></span> Sign Up </Link></li>
               <li><Link to='/login'><span className="glyphicon glyphicon-log-in"></span> Login </Link></li>
+              <li><Link to='/logout'><span className="glyphicon glyphicon-log-out"></span> Logout </Link></li>
             </ul>
            
           </div>

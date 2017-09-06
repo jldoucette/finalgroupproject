@@ -88,12 +88,17 @@ var helpers = {
         })
     },
 
-    purchaseplate: function (id) {
+    purchaseplate: function (id,restid,priorquantity,quantity) {
+        // var priorquantity="100";
         console.log("ID is: " + id);
+        console.log("RestID is: " + restid);
+        console.log("Quantity is: " + quantity);
+        console.log("Prior Quantity is: "+priorquantity);
         return axios.put('/api/purchaseplates', {
-            quantityordered: '1',
-            restID: '1',
-            id: id
+            quantityordered: quantity,
+            restID: restid,
+            id: id,
+            priorquantity: priorquantity
         }).then(function (results) {
             console.log("Ran Helpers:purchaseoptions");
             console.log(results);

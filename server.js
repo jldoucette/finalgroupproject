@@ -76,6 +76,11 @@ app.get("/restaurants", function (req, res) {
   res.sendFile(__dirname + "/public/index.html");
 });
 
+app.get("/purchaseplates", function (req, res) {
+  res.sendFile(__dirname + "/public/index.html");
+});
+
+
 
 //Express Routes 
 
@@ -285,24 +290,35 @@ app.put("/api/purchaseoptions/:id", function (req, res) {
 // });
 
 app.put("/api/purchaseplates", function (req, res) {
+  console.log(req.body);
   var id=req.body.id;
-  var newQuantity='9';
-  console.log("Passed thru id param is: "+id);
+  var rest=req.body.restID;
+  var quant=req.body.quantityordered;
+  var priorquant=parseInt(req.body.priorquantity);
+  console.log("Passed thru id param is: "+req.body.id);
+  console.log("RestID Passed is "+req.body.restID);
+  console.log("Quantity Passed is "+req.body.quantityordered);
+  console.log("Prior Quantity Passed is "+req.body.priorquantity);
+  var newQuantity = parseInt(priorquant) - parseInt(quant);
+  console.log("newQuantity is "+ newQuantity);
 db.purchases.create({
   guestId: userIdentity,
-  quantity: req.body.quantityordered,
-  restaurantId: req.body.restID,
+  quantity: quant,
+  restaurantId: rest,
   plateId: id,
   createdate: todaysdate,
   paid: false,
   completed: false
-}), db.plates.update({
+})
+, 
+db.plates.update({
   quantity: newQuantity
 }, {
     where: {
       id: id
     }
-  }).then(function (data) {
+  })
+  .then(function (data) {
     res.json(data);
   });
 });
@@ -393,7 +409,7 @@ app.get('/api/pendingorders', function (req, res) {
 app.get('/api/purchaseoptions', function (req, res) {
 
   db.plates.findAll({
-    //  order: [['restID', 'ASC']],
+     order: [['restaurantId', 'ASC']],
     where: {
       'quantity': { $gte: 1 }
       // createdate: todaysdate

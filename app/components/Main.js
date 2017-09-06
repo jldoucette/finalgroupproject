@@ -8,6 +8,7 @@ import { Switch, Route } from 'react-router-dom';
 import Header from './Header.js';
 
 import LogIn from './LogIn.js';
+import Logout from './Logout.js';
 import NewUser from './NewUser.js';
 import AboutUs from './AboutUs.js';
 import Testing from './Testing.js';
@@ -16,6 +17,8 @@ import AddRestaurant from './AddRestaurant.js';
 import Restaurants from './Restaurants.js';
 import Plates from './Plates.js';
 import PurchasePlates from './PurchasePlates.js';
+import NotAuthorized from './NotAuthorized.js';
+import NotLoggedIn from './NotLoggedIn.js';
 
 
 
@@ -29,12 +32,15 @@ class Main extends React.Component {
                     <Route exact path="/aboutus" component={AboutUs} />
                     <Route exact path="/newplates" component={Plates} />
                     <Route exact path="/login" component={LogIn} />
+                    <Route exact path="/logout" component={Logout} />
                     <Route exact path="/newuser" component={NewUser} />
                     <Route exact path="/testing" component={Testing} />
                     <Route exact path="/addplate" component={AddPlate} />
                     <Route exact path="/addrestaurant" component={AddRestaurant} />
                     <Route exact path="/restaurants" component={Restaurants} />
                     <Route exact path="/purchaseplates" component={PurchasePlates} />
+                    <Route exact path="/notauthorized" component={NotAuthorized} />
+                    <Route exact path="/notloggedin" component={NotLoggedIn} />
     
                 </Switch>
 

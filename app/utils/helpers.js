@@ -3,10 +3,11 @@ var bcrypt = require("bcryptjs");
 
 var helpers = {
 
-    loginuser2: function () {
-        var response = "Hello there. This is a response!";
+    logout: function () {
+        return axios.get('/logout').then((response)=>{
+            console.log("Logout Completed in helpers");
+        })
         return (response);
-
     },
 
     loginuser: function (logininput) {

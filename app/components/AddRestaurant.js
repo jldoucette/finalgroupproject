@@ -181,7 +181,6 @@ class AddRestaurant extends React.Component {
 
                                     <div className='col-md-10'>
                                         <button className="btn btn-default btn-large" onClick={this.collectInfo} type="submit">Create Restaurant</button>
-                                        <a className="btn btn-default" href="/addrestaurant">Refresh Restaurant Page</a>
                                     </div>
 
                                 </div>

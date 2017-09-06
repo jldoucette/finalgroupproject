@@ -56,13 +56,21 @@ app.get("/login", function (req, res) {
   res.sendFile(__dirname + "/public/index.html");
 });
 
+app.get("/logout", function (req, res) {
+  userLoggedIn = false;
+  res.redirect('/login');
+});
+
 app.get("/newuser", function (req, res) {
-  if(userLoggedIn) {
-    res.sendFile(__dirname + "/public/index.html");
-    }
-    else {
-      res.redirect('/login');
-    }
+  res.sendFile(__dirname + "/public/index.html");
+});
+
+app.get("/notauthorized", function (req, res) {
+  res.sendFile(__dirname + "/public/index.html");
+});
+
+app.get("/notloggedin", function (req, res) {
+  res.sendFile(__dirname + "/public/index.html");
 });
 
 app.get("/testing", function (req, res) {
@@ -70,38 +78,50 @@ app.get("/testing", function (req, res) {
 });
 
 app.get("/addplate", function (req, res) {
-  if(userLoggedIn) {
-  res.sendFile(__dirname + "/public/index.html");
+  if (!userLoggedIn) {
+    res.redirect('//notloggedin');
+  }
+  if (userLoggedIn && userRole == 'R') {
+    res.sendFile(__dirname + "/public/index.html");
   }
   else {
-    res.redirect('/login');
+    res.redirect('/notauthorized');
   }
 });
 
 app.get("/addrestaurant", function (req, res) {
-if(userLoggedIn && userRole=='A') {
-  res.sendFile(__dirname + "/public/index.html");
+  if (!userLoggedIn) {
+    res.redirect('/notloggedin');
+  }
+  if (userLoggedIn && userRole == 'A') {
+    res.sendFile(__dirname + "/public/index.html");
   }
   else {
-    res.redirect('/login');
+    res.redirect('/notauthorized');
   }
 });
 
 app.get("/restaurants", function (req, res) {
-if(userLoggedIn) {
-  res.sendFile(__dirname + "/public/index.html");
+  if (!userLoggedIn) {
+    res.redirect('/notloggedin');
+  }
+  if (userLoggedIn && userRole == 'A') {
+    res.sendFile(__dirname + "/public/index.html");
   }
   else {
-    res.redirect('/login');
+    res.redirect('/notauthorized');
   }
 });
 
 app.get("/purchaseplates", function (req, res) {
-if(userLoggedIn && userRole=="U") {
-  res.sendFile(__dirname + "/public/index.html");
+  if (!userLoggedIn) {
+    res.redirect('/notloggedin');
+  }
+  if (userLoggedIn && userRole == "U") {
+    res.sendFile(__dirname + "/public/index.html");
   }
   else {
-    res.redirect('/login');
+    res.redirect('/notauthorized');
   }
 });
 
@@ -127,11 +147,11 @@ app.get("/api/testRetrieve", function (req, res) {
 
 app.put("/api/login", function (req, res) {
   console.log("^^^^^^^^^^^^^^^^Got to Login Put");
-    console.log(req.body);
+  console.log(req.body);
   today = new Date();
   todaysdate = today.getFullYear() + "-" + (1 + today.getMonth()) + "-" + today.getDate();
   console.log("++++++++++++++++++++++++++Todays Date is " + todaysdate);
-  console.log("req.body.Username is "+req.body.logininput.Username);
+  console.log("req.body.Username is " + req.body.logininput.Username);
   db.guests.findOne({
     where:
     {
@@ -155,7 +175,7 @@ app.put("/api/login", function (req, res) {
             }
           }).then(function (data) {
             console.log("Password was matched");
-            console.log("User "+siteUsername);
+            console.log("User " + siteUsername);
             console.log(data.id);
             console.log(data.first_name);
             console.log(data.last_name);
@@ -261,7 +281,7 @@ app.post("/api/addplate", function (req, res) {
     preptime: req.body.PrepTime,
     delaytime: req.body.DelayTime,
     restaurantId: userRestaurant
-    
+
   }).then(function (data) {
     console.log("Data is:");
     console.log(data);
@@ -271,10 +291,10 @@ app.post("/api/addplate", function (req, res) {
 
 app.put("/api/purchaseoptions/:id", function (req, res) {
   newQuantity = parseInt(req.body.priorquantity) - parseInt(req.body.quantityordered);
-  
+
   if (newQuantity >= 0) {
     db.purchases.create({
-      guestId: userIdentity, 
+      guestId: userIdentity,
       quantity: req.body.quantityordered,
       restaurantId: req.body.restID,
       plateId: req.params.id,
@@ -316,36 +336,36 @@ app.put("/api/purchaseoptions/:id", function (req, res) {
 
 app.put("/api/purchaseplates", function (req, res) {
   console.log(req.body);
-  var id=req.body.id;
-  var rest=req.body.restID;
-  var quant=req.body.quantityordered;
-  var priorquant=parseInt(req.body.priorquantity);
-  console.log("Passed thru id param is: "+req.body.id);
-  console.log("RestID Passed is "+req.body.restID);
-  console.log("Quantity Passed is "+req.body.quantityordered);
-  console.log("Prior Quantity Passed is "+req.body.priorquantity);
+  var id = req.body.id;
+  var rest = req.body.restID;
+  var quant = req.body.quantityordered;
+  var priorquant = parseInt(req.body.priorquantity);
+  console.log("Passed thru id param is: " + req.body.id);
+  console.log("RestID Passed is " + req.body.restID);
+  console.log("Quantity Passed is " + req.body.quantityordered);
+  console.log("Prior Quantity Passed is " + req.body.priorquantity);
   var newQuantity = parseInt(priorquant) - parseInt(quant);
-  console.log("newQuantity is "+ newQuantity);
-db.purchases.create({
-  guestId: userIdentity,
-  quantity: quant,
-  restaurantId: rest,
-  plateId: id,
-  createdate: todaysdate,
-  paid: false,
-  completed: false
-})
-, 
-db.plates.update({
-  quantity: newQuantity
-}, {
-    where: {
-      id: id
-    }
+  console.log("newQuantity is " + newQuantity);
+  db.purchases.create({
+    guestId: userIdentity,
+    quantity: quant,
+    restaurantId: rest,
+    plateId: id,
+    createdate: todaysdate,
+    paid: false,
+    completed: false
   })
-  .then(function (data) {
-    res.json(data);
-  });
+    ,
+    db.plates.update({
+      quantity: newQuantity
+    }, {
+        where: {
+          id: id
+        }
+      })
+      .then(function (data) {
+        res.json(data);
+      });
 });
 
 app.delete("/api/cancelplate/:id", function (req, res) {
@@ -435,7 +455,7 @@ app.get('/api/pendingorders', function (req, res) {
 app.get('/api/purchaseoptions', function (req, res) {
 
   db.plates.findAll({
-     order: [['restaurantId', 'ASC']],
+    order: [['restaurantId', 'ASC']],
     where: {
       'quantity': { $gte: 1 }
       // createdate: todaysdate
@@ -447,44 +467,44 @@ app.get('/api/purchaseoptions', function (req, res) {
   });
 });
 
-  app.get('/api/purchasesummary', function (req, res) {
-      db.purchases.findAll({
-        order: [['restaurantId', 'ASC']],
-        where: {
-          guestId: userIdentity,
-          createdate: todaysdate,
-          // paid: false,
-          'quantity': { $gte: 1 }
-        },
-        include: [db.plates, db.restaurants]
+app.get('/api/purchasesummary', function (req, res) {
+  db.purchases.findAll({
+    order: [['restaurantId', 'ASC']],
+    where: {
+      guestId: userIdentity,
+      createdate: todaysdate,
+      // paid: false,
+      'quantity': { $gte: 1 }
+    },
+    include: [db.plates, db.restaurants]
 
-      }).then(function (data) {
-        res.json(data);
-      });
-    });
+  }).then(function (data) {
+    res.json(data);
+  });
+});
 
-      app.get("/api/restaurants", function (req, res) {
-          db.restaurants.findAll({
-            order: ['restname']
-          }).then(function (data) {
-            res.json(data);
-          });
-        });
+app.get("/api/restaurants", function (req, res) {
+  db.restaurants.findAll({
+    order: ['restname']
+  }).then(function (data) {
+    res.json(data);
+  });
+});
 
-          app.get('/api/admin', function (req, res) {
-              db.guests.findAll({
-                order: [
-                  ['user_role', 'ASC'],
-                  ["last_name", "ASC"]
-                ]
-              }).then(function (data) {
-                res.json(data);
-          });
-        });
+app.get('/api/admin', function (req, res) {
+  db.guests.findAll({
+    order: [
+      ['user_role', 'ASC'],
+      ["last_name", "ASC"]
+    ]
+  }).then(function (data) {
+    res.json(data);
+  });
+});
 
-          db.sequelize.sync().then(function () {
-            app.listen(PORT, function () {
-              console.log("App listening on PORT " + PORT);
-            });
-          });
+db.sequelize.sync().then(function () {
+  app.listen(PORT, function () {
+    console.log("App listening on PORT " + PORT);
+  });
+});
 

@@ -130,7 +130,7 @@ app.put("/api/login", function (req, res) {
             }
           }).then(function (data) {
             console.log("Password was matched");
-            console.log("User"+siteUsername);
+            console.log("User "+siteUsername);
             console.log(data.id);
             console.log(data.first_name);
             console.log(data.last_name);
@@ -157,7 +157,7 @@ app.put("/api/login", function (req, res) {
             console.log(userPhone);
             console.log(userRestaurant);
             console.log(userRole);
-
+            res.json(data);
             // if (userRole == "R") {
             //   console.log("User Role was R");
             //   res.redirect("/pendingorders");
@@ -366,6 +366,7 @@ app.post("/api/addrestaurant", function (req, res) {
     createdBy: siteUsername
   }).then(function (data) {
     res.json(data);
+    console.log(JSON.stringify(data));
   });
 });
 

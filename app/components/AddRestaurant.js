@@ -85,7 +85,7 @@ class AddRestaurant extends React.Component {
         }
         console.log("This restaurantinput passed");
         console.log(restaurantinput);
-        helpers.addrestaurant(restaurantinput).then(function () {
+        helpers.addrestaurant(restaurantinput).then(function (response) {
             console.log("Add Restaurant Component Completed");
         });
     

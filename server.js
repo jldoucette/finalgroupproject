@@ -101,6 +101,18 @@ app.get("/addrestaurant", function (req, res) {
   }
 });
 
+app.get("/purchasesummary", function (req, res) {
+  if (!userLoggedIn) {
+    res.redirect('/notloggedin');
+  }
+  if (userLoggedIn && userRole == 'U') {
+    res.sendFile(__dirname + "/public/index.html");
+  }
+  else {
+    res.redirect('/notauthorized');
+  }
+});
+
 app.get("/restaurants", function (req, res) {
   if (!userLoggedIn) {
     res.redirect('/notloggedin');
@@ -472,13 +484,26 @@ app.get('/api/purchasesummary', function (req, res) {
     order: [['restaurantId', 'ASC']],
     where: {
       guestId: userIdentity,
-      createdate: todaysdate,
-      // paid: false,
+      paid: false,
       'quantity': { $gte: 1 }
     },
     include: [db.plates, db.restaurants]
 
   }).then(function (data) {
+    res.json(data);
+  });
+});
+
+app.put('/api/purchaseorder', function (req, res) {
+  db.purchases.update({
+    paid:true},{
+    where: {
+      guestId: userIdentity,
+      paid: false,
+      'quantity': { $gte: 1 }
+    }
+  }).then(function (data) {
+    console.log("Updated purchases to paid on /api/purchaseorder");
     res.json(data);
   });
 });

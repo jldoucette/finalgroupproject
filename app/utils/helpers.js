@@ -89,6 +89,15 @@ var helpers = {
         })
     },
 
+    guestpurchases: function () {
+        return axios.get('/api/purchasesummary').then(function (results) {
+            console.log("Ran Helpers:purchasesummary");
+            console.log(results);
+            return (results);
+        })
+    },
+
+
     purchaseplate: function (id, restid, priorquantity, quantity) {
         // var priorquantity="100";
         console.log("ID is: " + id);
@@ -105,6 +114,19 @@ var helpers = {
             console.log(results);
             return (results);
         })
+    },
+
+    purchaseorder: function (id, totalcost) {
+        console.log("ID is: " + id);
+        return axios.put('/api/purchaseorder', {
+            guestId:id,
+            paid:true
+        }).then(function (results) {
+            console.log("Ran Helpers:purchaseorder");
+            console.log(results);
+            return (results);
+        })
+    
     },
 
     addplate: function (platedetails) {

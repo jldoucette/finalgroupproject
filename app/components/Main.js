@@ -17,6 +17,7 @@ import AddRestaurant from './AddRestaurant.js';
 import Restaurants from './Restaurants.js';
 import Plates from './Plates.js';
 import PurchasePlates from './PurchasePlates.js';
+import PurchaseSummary from './PurchaseSummary.js';
 import NotAuthorized from './NotAuthorized.js';
 import NotLoggedIn from './NotLoggedIn.js';
 
@@ -39,7 +40,8 @@ class Main extends React.Component {
                     <Route exact path="/addrestaurant" component={AddRestaurant} />
                     <Route exact path="/restaurants" component={Restaurants} />
                     <Route exact path="/purchaseplates" component={PurchasePlates} />
-                    <Route exact path="/notauthorized" component={NotAuthorized} />
+                    <Route exact path="/purchaseplates" component={PurchasePlates} />
+                    <Route exact path="/purchasesummary" component={PurchaseSummary} />
                     <Route exact path="/notloggedin" component={NotLoggedIn} />
     
                 </Switch>

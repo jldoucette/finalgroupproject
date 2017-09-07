@@ -80,6 +80,13 @@ var helpers = {
             });
     },
 
+    pendingorders: function () {
+        return axios.get('/api/pendingorders').then(function (results) {
+            console.log("Ran Helpers:pendingorders");
+            console.log(results);
+            return (results);
+        })
+    },
 
     purchaseoptions: function () {
         return axios.get('/api/purchaseoptions').then(function (results) {
@@ -127,6 +134,19 @@ var helpers = {
             return (results);
         })
     
+    },
+
+    completeplate: function (id) {
+        console.log("ID is: " + id);
+
+        return axios.put('/api/completeplate', {
+            id: id
+           
+        }).then(function (results) {
+            console.log("Ran Helpers:completeplate");
+            console.log(results);
+            return (results);
+        })
     },
 
     addplate: function (platedetails) {

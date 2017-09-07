@@ -23,6 +23,7 @@ import Restaurants from './Restaurants.js';
 import Plates from './Plates.js';
 import PurchasePlates from './PurchasePlates.js';
 import PurchaseSummary from './PurchaseSummary.js';
+import PendingOrders from './PendingOrders.js';
 import NotAuthorized from './NotAuthorized.js';
 import NotLoggedIn from './NotLoggedIn.js';
 
@@ -52,6 +53,7 @@ class Main extends React.Component {
                     <Route exact path="/purchaseplates" component={PurchasePlates} />
                     <Route exact path="/purchaseplates" component={PurchasePlates} />
                     <Route exact path="/purchasesummary" component={PurchaseSummary} />
+                    <Route exact path="/pendingorders" component={PendingOrders} />
                     <Route exact path="/notloggedin" component={NotLoggedIn} />
     
                 </Switch>

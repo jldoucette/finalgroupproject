@@ -1,5 +1,7 @@
 body {
-    background-image: url("http://healtheatingfood.com/wp-content/uploads/2016/04/functional-food.jpg");
+    /* background-image: url("http://healtheatingfood.com/wp-content/uploads/2016/04/functional-food.jpg"); */
+    background-image: url("./lastcallbackground.jpg");
     background-repeat: no-repeat;
-    background-size:cover;  
+    background-size:cover; 
+    color: white; 
 }

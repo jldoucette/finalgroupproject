@@ -137,6 +137,18 @@ app.get("/purchaseplates", function (req, res) {
   }
 });
 
+app.get("/pendingorders", function (req, res) {
+  if (!userLoggedIn) {
+    res.redirect('/notloggedin');
+  }
+  if (userLoggedIn && userRole == "R") {
+    res.sendFile(__dirname + "/public/index.html");
+  }
+  else {
+    res.redirect('/notauthorized');
+  }
+});
+
 app.get("/userhome", function (req, res) {
   res.sendFile(__dirname + "/public/index.html");
 });
@@ -405,12 +417,13 @@ app.delete("/api/cancelplate/:id", function (req, res) {
       });
 });
 
-app.put("/api/completeplate/:id", function (req, res) {
+app.put("/api/completeplate", function (req, res) {
+  var id = req.body.id;
   db.purchases.update({
     completed: true
   }, {
       where: {
-        id: req.params.id
+        id: id
       }
     }).then(function (data) {
       res.json(data);

@@ -6,11 +6,16 @@ import { Switch, Route } from 'react-router-dom';
 
 //Headers Top Parents
 import Header from './Header.js';
-
 import LogIn from './LogIn.js';
 import Logout from './Logout.js';
 import NewUser from './NewUser.js';
 import AboutUs from './AboutUs.js';
+
+import UserMain from './UserMain.js';
+import RestMain from './RestMain.js';
+import AdminMain from './AdminMain.js';
+
+
 import Testing from './Testing.js';
 import AddPlate from './AddPlate.js';
 import AddRestaurant from './AddRestaurant.js';
@@ -35,6 +40,11 @@ class Main extends React.Component {
                     <Route exact path="/login" component={LogIn} />
                     <Route exact path="/logout" component={Logout} />
                     <Route exact path="/newuser" component={NewUser} />
+
+                    <Route exact path="/userhome" component={UserMain} />
+                    <Route exact path="/restaurant" component={RestMain} />
+                    <Route exact path="/admin" component={AdminMain} />
+
                     <Route exact path="/testing" component={Testing} />
                     <Route exact path="/addplate" component={AddPlate} />
                     <Route exact path="/addrestaurant" component={AddRestaurant} />

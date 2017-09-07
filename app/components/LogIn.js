@@ -1,10 +1,15 @@
 // Include React
 import React from "react";
-import { Link, Redirect} from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import helpers from "../utils/helpers.js";
 import NewUser from "./NewUser.js";
 import axios from "axios";
 var userRole;
+
+//Component Styling
+const divStyle = {
+    width: "100%"
+};
 
 class LogIn extends React.Component {
     constructor(props) {
@@ -30,8 +35,8 @@ class LogIn extends React.Component {
         console.log(logininput);
         console.log(this.state.redirect);
         axios.put('/api/login', { logininput }).then((response) => {
-            userRole=response.data.user_role;
-            this.setState({redirect:true});
+            userRole = response.data.user_role;
+            this.setState({ redirect: true });
             console.log("Ran Helpers:/api/login");
             console.log(response);
             // <Redirect to="/purchaseplates"/>
@@ -48,26 +53,24 @@ class LogIn extends React.Component {
         //         <Redirect to="/purchaseplates" />
         //     )} />
         // });
-
-
-
     }
 
+
     render() {
-        const {redirect} = this.state;
-        if (redirect && userRole=='U') {
-            return <Redirect to='/purchaseplates'/>;
+        const { redirect } = this.state;
+        if (redirect && userRole == 'U') {
+            return <Redirect to='/purchaseplates' />;
         }
-        if (redirect && userRole=='A') {
-            return <Redirect to='/addrestaurant'/>;
+        if (redirect && userRole == 'A') {
+            return <Redirect to='/addrestaurant' />;
         }
-        if (redirect && userRole=='R') {
-            return <Redirect to='/addplate'/>;
+        if (redirect && userRole == 'R') {
+            return <Redirect to='/addplate' />;
         }
 
         return (
             <div className="row">
-                <div className="col-md-4 col-md-offset-5">
+                {/* <div className=" loginBox col-md-4 col-md-offset-5" style={divStyle}>
                     <div id="loginpage">
                         <h2>Login Page</h2>
 
@@ -101,7 +104,45 @@ class LogIn extends React.Component {
                             </div>
                         </form>
                     </div>
-                </div>
+                </div> */}
+
+                <div className="container col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6 col-lg-offset-4 col-lg-4" >
+                    <br />
+                    <div className="panel panel-default">
+                        <div className="panel-heading">
+                            <h1>Login</h1>
+                        </div>
+                        <div className="panel-body">
+                            <div className="form-group">
+                                <div className="input-group">
+                                    <span className="input-group-addon">
+                                        <i className="glyphicon glyphicon-user" ></i>
+                                    </span>
+                                    <input type="text" className="form-control" name="username" placeholder="Email" value={this.state.Phone}   onChange={(event) => {
+                                        this.setState({
+                                            Username: event.target.value
+                                        })
+                                    }}/>
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <div className="input-group">
+                                    <span className="input-group-addon">
+                                        <i className="glyphicon glyphicon-lock" ></i>
+                                    </span>
+                                    <input  type="password" className="form-control" name="password" placeholder="Password" value={this.state.Password} onChange={(event) => {
+                                            this.setState({
+                                                Password: event.target.value
+                                            })
+                                        }} />
+                                </div>
+                            </div>
+                            <button id="btnLogin" style={divStyle} className="btn btn-default" onClick={this.collectInfo.bind(this)}>
+                                Log In<i className="glyphicon glyphicon-log-in"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>                
             </div>
         );
     };
@@ -109,12 +150,3 @@ class LogIn extends React.Component {
 
 export default LogIn;
 
-// import { Route, Redirect } from 'react-router'
-
-// <Route exact path="/" render={() => (
-//     loggedIn ? (
-//         <Redirect to="/dashboard" />
-//     ) : (
-//             <PublicHomePage />
-//         )
-// )} />

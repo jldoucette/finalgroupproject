@@ -137,6 +137,10 @@ app.get("/purchaseplates", function (req, res) {
   }
 });
 
+app.get("/userhome", function (req, res) {
+  res.sendFile(__dirname + "/public/index.html");
+});
+
 
 
 //Express Routes 

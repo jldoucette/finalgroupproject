@@ -58,26 +58,25 @@ var helpers = {
     },
 
     addnewuser: function (newuser) {
+        return
+            axios
+                .post('/api/newuser',
+                {
+                    first_name: newuser.FirstName,
+                    last_name: newuser.LastName,
+                    email: newuser.Email,
+                    username: newuser.Email,
+                    address: newuser.Address,
+                    phone: newuser.Phone,
+                    password: newuser.Password,
+                    user_role: newuser.Role,
+                    restID: newuser.RestID
 
-
-        axios
-            .post('/api/newuser',
-            {
-                first_name: newuser.FirstName,
-                last_name: newuser.LastName,
-                email: newuser.Email,
-                username: newuser.Email,
-                address: newuser.Address,
-                phone: newuser.Phone,
-                password: newuser.Password,
-                user_role: newuser.Role,
-                restID: newuser.RestID
-
-            })
-            .then(results => {
-                console.log("completed post /api/newuser");
-                return (results);
-            });
+                })
+                .then(results => {
+                    console.log("completed post /api/newuser");
+                    return (results);
+                });
     },
 
 

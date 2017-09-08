@@ -20,7 +20,7 @@ import Testing from './Testing.js';
 import AddPlate from './AddPlate.js';
 import AddRestaurant from './AddRestaurant.js';
 import Restaurants from './Restaurants.js';
-import Plates from './Plates.js';
+// import Plates from './Plates.js';
 import PurchasePlates from './PurchasePlates.js';
 import PurchaseSummary from './PurchaseSummary.js';
 import NotAuthorized from './NotAuthorized.js';
@@ -36,7 +36,7 @@ class Main extends React.Component {
 
                 <Switch>
                     <Route exact path="/aboutus" component={AboutUs} />
-                    <Route exact path="/newplates" component={Plates} />
+                    {/* <Route exact path="/newplates" component={Plates} /> */}
                     <Route exact path="/login" component={LogIn} />
                     <Route exact path="/logout" component={Logout} />
                     <Route exact path="/newuser" component={NewUser} />

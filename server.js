@@ -5,6 +5,10 @@ const path = require('path');
 let logger = require("morgan");
 let bcrypt = require("bcryptjs");
 const saltRounds = 10;
+
+//Stripe setup
+var stripe = require("stripe")("sk_test_FzfYBj3xtCColPKNW5LuYAvC");
+
 //Express
 let app = express();
 
@@ -542,6 +546,33 @@ app.get('/api/admin', function (req, res) {
   }).then(function (data) {
     res.json(data);
   });
+});
+
+app.post("/charge", function(req, res) {
+  var amount = req.body.amount;
+  var token = req.body.token;
+  var successorfail=false;
+  console.log("Amount is: "+amount);
+  console.log("Token is: "+token);
+  console.log(req.body);
+
+  var charge = stripe.charges.create({
+    amount: amount, //where you put the amount you want to charge its in cents
+    currency: "usd",
+    description: "Example charge",
+    source: token,
+  }, function(err, charge) {
+    if(err) {
+      console.log("Payment Failed");
+    }
+    else {
+      console.log("Payment Succeeded");
+      console.log(charge);
+      res.json(charge);
+    }
+  });
+
+
 });
 
 db.sequelize.sync().then(function () {

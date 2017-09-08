@@ -1,19 +1,15 @@
 // Include React
 import React from "react";
-import { Link, Redirect } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import helpers from "../utils/helpers.js";
-import Payment from "./Payment.js";
-
-var stripetotalincents=0;
+import Payment from "./Payment";
 
 class PurchaseSummary extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             purchases: [],
-            purchasetotal:'',
-            stripepurchasetotal:''
-        
+            purchasetotal:''
         };
     }
 
@@ -59,13 +55,9 @@ class PurchaseSummary extends React.Component {
                 console.log(subtotal);
             }
             finaltotal=subtotal.toFixed(2);
-            stripetotalincents=parseInt(finaltotal*100);
             console.log("Final Total" + finaltotal);
-            console.log("Final Stripe Total" + stripetotalincents);
             this.setState({
-                purchasetotal: finaltotal,
-                stripepurchasetotal:stripetotalincents
-
+                purchasetotal: finaltotal
             });
             console.log(JSON.stringify(this.state.purchases));
         }
@@ -119,16 +111,6 @@ class PurchaseSummary extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <Payment totalAmount={this.state.stripepurchasetotal} onComplete={function(paymentresult){
-                        console.log(paymentresult);
-                        if(paymentresult=="Paid") {
-                            return <Redirect to='/newuser'/>;
-                        }
-                        else {
-                            return <Redirect to='/login'/>;
-                        }
-                    }} />
-                    
                 </div>
             </div>
 

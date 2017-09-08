@@ -68,8 +68,7 @@ class PurchasePlates extends React.Component {
                                                             quantityordered: event.target.value
                                                         })
                                                     }} />
-                                        
-
+                
 
                                                 {/* <label for="quantityordered"> How Many Meals Would You Like? </label>
                                                 <input type="text" id="quantityordered" name="quantityordered" /> */}

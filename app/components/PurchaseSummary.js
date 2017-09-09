@@ -123,7 +123,8 @@ class PurchaseSummary extends React.Component {
                                     );
                                 })}
                                 <h4>Purchase Total is ${this.state.purchasetotal}</h4>
-                                <button className="btn btn-default btn-large" onClick={() => this.purchaseorder(this.state.guestidentity, this.state.purchasetotal)}>Pay For Order</button>
+                                
+                                 {/* <button className="btn btn-default btn-large" onClick={() => this.purchaseorder(this.state.guestidentity, this.state.purchasetotal)}>Pay For Order</button> */}
                             </ul>
                         </div>
 
@@ -136,6 +137,7 @@ class PurchaseSummary extends React.Component {
 
 
                     </div>
+                    <button className="btn btn-small"><Link to='/orderconfirm'> C </Link></button>
                 </div>
             
 

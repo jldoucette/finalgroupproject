@@ -185,6 +185,14 @@ var helpers = {
         })
     },
 
+    guestorderconfirm: function () {
+        return axios.get('/api/purchasehistory').then(function (results) {
+            console.log("Ran Helpers:purchasehistory");
+            console.log(results);
+            return (results);
+        })
+    },
+
     completedorders: function () {
         return axios.get('/api/completedorders').then(function (results) {
             console.log("Ran Helpers:completedorders");

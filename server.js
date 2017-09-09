@@ -80,6 +80,9 @@ app.get("/notloggedin", function (req, res) {
 app.get("/testing", function (req, res) {
   res.sendFile(__dirname + "/public/index.html");
 });
+app.get("/thisisit", function (req, res) {
+  res.sendFile(__dirname + "/public/index.html");
+});
 
 app.get("/addplate", function (req, res) {
   if (!userLoggedIn) {

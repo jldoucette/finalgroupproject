@@ -50,28 +50,41 @@ class PurchaseHistory extends React.Component {
 
     render() {
         return (
+
             <div className="row">
-                <div className="col-md-8" style={divStyle}>
-                    
-                    <h2>Plates Purchased</h2>
-                    <div>
-                        <ul>
-                            {this.state.purchases.map((purchase, index) => {
-                                return (
-                                    <div key={purchase.id} className="col-md-7">
+                <div className="col-md-10 col-md-offset-1">
+                    <div className="panel panel-default">
+                        <div className="panel-heading-custom panel-heading">
+                            <h2 className="panel-Title">Plates Purchased</h2>
+                            <button className="btn btn-medium"><Link to='/userhome'> Back to Menu </Link></button>
+                        </div>
 
-                                        From: <strong>{purchase.restaurant.restname}</strong><br />
-                                        {purchase.plate.description} <br />
-                                        <strong>Quantity Purchased: </strong>{purchase.quantity}<br />
-                                        <strong> Price per plate ${purchase.plate.price}</strong><br />
+                        <div className="panel-body">
 
-                                    </div>
-                                );
-                            })}
-                            <button className="btn btn-secondary"><Link to='/userhome'> Return to Main Menu</Link></button>
-                        </ul>
+                            {/* <div className="row">
+                                <div className="col-md-12" style={divStyle}> */}
+
+
+
+
+                            <ul>
+                                {this.state.purchases.map((purchase, index) => {
+                                    return (
+                                        <div key={purchase.id} className="col-md-12">
+
+                                            From: <strong>{purchase.restaurant.restname}</strong><br />
+                                            {purchase.plate.description} <br />
+                                            <strong>Quantity Purchased: </strong>{purchase.quantity}<br />
+                                            <strong> Price per plate ${purchase.plate.price}</strong><br />
+
+                                        </div>
+                                    );
+                                })}
+
+                            </ul>
+                        </div>
+
                     </div>
-
                 </div>
             </div>
 

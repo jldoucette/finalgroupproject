@@ -1,6 +1,6 @@
 // Include React
 import React from "react";
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import helpers from "../utils/helpers.js";
 
 const divStyle = {
@@ -57,6 +57,7 @@ class PurchasePlates extends React.Component {
 
                 <div className="title">
                     Plates to Purchase
+                    <button className="btn btn-medium"><Link to='/userhome'> Back to Menu </Link></button>
                 </div>
                 <div className='col-md-12' >
                     <div>

@@ -96,8 +96,8 @@ var helpers = {
                     address: newuser.Address,
                     phone: newuser.Phone,
                     password: newuser.Password,
-                    user_role: newuser.Role,
-                    restID: newuser.RestID
+                    user_role: 'U'
+                  
 
                 })
 

@@ -1,8 +1,9 @@
 // Include React
 import React from "react";
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import helpers from "../utils/helpers.js";
 import UpdateUser from "./UpdateUser.js";
+
 
 const divStyle = {
     backgroundColor: "beige",
@@ -114,6 +115,7 @@ class EditUser extends React.Component {
                 <div className="col-md-12" >
                     <h2 style={divStyle2}>Edit User Page</h2>
                     <h2 style={divStyle2} >Current Users</h2>
+                    <button className="btn btn-medium"><Link to='/admin'> Back to Menu </Link></button>
                     <ul>
                         {this.state.guests.map((guest, index) => {
                             return (

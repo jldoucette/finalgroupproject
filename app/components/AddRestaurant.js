@@ -2,6 +2,7 @@
 import React from "react";
 // import { Link } from 'react-router-dom';
 import helpers from "../utils/helpers.js";
+import { Link } from "react-router-dom";
 
 var checkRestaurantState;
 
@@ -80,6 +81,7 @@ class AddRestaurant extends React.Component {
                         <div className="panel-heading-custom panel-heading">
                             <h2 className="panel-title" style={fontStyle}>Current Restaurants</h2>
                         </div>
+                        <button className="btn btn-medium"><Link to='/admin'> Back to Menu </Link></button>
                         <ul>
                             {this.state.restaurants.map((restaurant, index) => {
                                 return (
@@ -172,7 +174,7 @@ class AddRestaurant extends React.Component {
                         </div>
                     </div>
                 </div>
-
+                
             </div>
         );
     };

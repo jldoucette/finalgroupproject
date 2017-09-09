@@ -2,6 +2,7 @@
 import React from "react";
 // import { Link } from 'react-router-dom';
 import helpers from "../utils/helpers.js";
+import { Link } from "react-router-dom";
 
 
 class PendingOrders extends React.Component {
@@ -50,6 +51,7 @@ class PendingOrders extends React.Component {
                     <div className="panel panel-default">
                         <div className="panel-heading-custom panel-heading">
                             <h2 className="panel-Title">Pending Orders</h2>
+                            <button className="btn btn-medium"><Link to='/restaurant'> Back to Menu </Link></button>
                         </div>
                     
                         <div className="panel-body">

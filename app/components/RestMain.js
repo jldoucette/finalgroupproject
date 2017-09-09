@@ -8,13 +8,16 @@ class RestMain extends React.Component {
         return (
             <div className="row">
                 <div className="col-md-4">
-                    <h1> Add New Plate </h1>
+                <h1><Link to ="/addplate"> Add New Plate </Link> </h1>
+       
                 </div>
                 <div className="col-md-4">
-                    <h1> View Pending </h1>
+                <h1><Link to ="/pendingorders"> View Pending Orders </Link> </h1>
+    
                 </div>
                 <div className="col-md-4">
-                    <h1> See Completed </h1>
+                <h1><Link to ="/completedorders"> See Completed </Link> </h1>
+          
                 </div>
             </div>
         )

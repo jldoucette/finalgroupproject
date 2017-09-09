@@ -58,14 +58,14 @@ class LogIn extends React.Component {
 
     render() {
         const { redirect } = this.state;
-        if (redirect && userRole == 'U') {
-            return <Redirect to='/purchaseplates' />;
+        if (redirect && userRole == 'R') {
+            return <Redirect to='/restaurant' />;
         }
         if (redirect && userRole == 'A') {
-            return <Redirect to='/addrestaurant' />;
+            return <Redirect to='/admin' />;
         }
-        if (redirect && userRole == 'R') {
-            return <Redirect to='/addplate' />;
+        if (redirect && userRole == 'U') {
+            return <Redirect to='/userhome' />;
         }
 
         return (

@@ -72,9 +72,9 @@ class PurchaseHistory extends React.Component {
                                     return (
                                         <div key={purchase.id} className="col-md-12">
 
-                                            From: <strong>{purchase.restaurant.restname}</strong><br />
-                                            {purchase.plate.description} <br />
-                                            <strong>Quantity Purchased: </strong>{purchase.quantity}<br />
+                                            From: <strong> {purchase.restaurant.restname} </strong>
+                                            {purchase.plate.description} 
+                                            <strong> Quantity Purchased: </strong>{purchase.quantity}
                                             <strong> Price per plate ${purchase.plate.price}</strong><br />
 
                                         </div>

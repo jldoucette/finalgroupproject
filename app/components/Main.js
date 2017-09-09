@@ -26,6 +26,7 @@ import PurchasePlates from './PurchasePlates.js';
 import PurchaseSummary from './PurchaseSummary.js';
 import PurchaseHistory from './PurchaseHistory.js';
 import CompletedOrders from './CompletedOrders.js';
+import OrderConfirm from './OrderConfirm.js';
 import PendingOrders from './PendingOrders.js';
 import NotAuthorized from './NotAuthorized.js';
 import NotLoggedIn from './NotLoggedIn.js';
@@ -50,7 +51,7 @@ class Main extends React.Component {
                     <Route exact path="/userhome" component={UserMain} />
                     <Route exact path="/restaurant" component={RestMain} />
                     <Route exact path="/admin" component={AdminMain} />
-
+                    <Route exact path="/orderconfirm" component={OrderConfirm} />
                     <Route exact path="/testing" component={Testing} />
                     <Route exact path="/thisisit" component={ThisIsIt} />
                     <Route exact path="/addplate" component={AddPlate} />

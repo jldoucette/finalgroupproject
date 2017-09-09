@@ -193,7 +193,8 @@ class NewUser extends React.Component{
                                         <div className="input-group-addon">
                                             <i className="fa fa-user"></i>
                                         </div>
-                                        <input type="text" placeholder="First Name" id="first_name" name="first_name" value={this.state.FirstName} className="form-control input-md" onChange={(event) => {
+                                        <input type="text" placeholder="First Name" id="first_name" name="first_name" value={this.state.FirstName} className="form-control input-md" 
+                                            onChange={(event) => {
                                             this.setState({
                                                 FirstName: event.target.value
                                             })
@@ -209,7 +210,8 @@ class NewUser extends React.Component{
                                         <div className="input-group-addon">
                                             <i className="fa fa-user"></i>
                                         </div>
-                                        <input type="text" id="last_name" value={this.state.LastName} placeholder="Last Name" className="form-control input-md" onChange={(event) => {
+                                        <input type="text" id="last_name" value={this.state.LastName} placeholder="Last Name" className="form-control input-md" 
+                                            onChange={(event) => {
                                             this.setState({
                                                 LastName: event.target.value
                                             })
@@ -225,7 +227,8 @@ class NewUser extends React.Component{
                                         <div className="input-group-addon">
                                         <i className="fa fa-envelope-o"></i>
                                         </div>
-                                        <input type="text" id="username" value={this.state.Email} name="username" placeholder="Email Address" className="form-control input-md" onChange={(event) => {
+                                        <input type="text" id="username" value={this.state.Email} name="username" placeholder="Email Address" className="form-control input-md" 
+                                            onChange={(event) => {
                                                 this.setState({
                                                     Email: event.target.value
                                                 })
@@ -241,7 +244,8 @@ class NewUser extends React.Component{
                                         <div className="input-group-addon">
                                             <i className="fa fa-key"></i>
                                         </div>
-                                        <input type="password" placeholder="Password" className="form-control input-md" id="password" value={this.state.Password} name="password" onChange={(event) => {
+                                        <input type="password" placeholder="Password" className="form-control input-md" id="password" value={this.state.Password} name="password" 
+                                            onChange={(event) => {
                                             this.setState({
                                                 Password: event.target.value
                                             })
@@ -257,7 +261,8 @@ class NewUser extends React.Component{
                                         <div className="input-group-addon">
                                             <i className="fa fa-home"></i>
                                         </div>
-                                        <input type="text" id="address" placeholder="Address" className="form-control input-md " value={this.state.Address} name="address" onChange={(event) => {
+                                        <input type="text" id="address" placeholder="Address" className="form-control input-md " value={this.state.Address} name="address" 
+                                            onChange={(event) => {
                                             this.setState({
                                                 Address: event.target.value
                                             })
@@ -273,7 +278,8 @@ class NewUser extends React.Component{
                                         <div className="input-group-addon">
                                             <i className="fa fa-phone"></i>
                                         </div>
-                                        <input type="text" id="phone" value={this.state.Phone} name="phone" placeholder="Primary Phone number " className="form-control input-md" onChange={(event) => {
+                                        <input type="text" id="phone" value={this.state.Phone} name="phone" placeholder="Phone number " className="form-control input-md" 
+                                            onChange={(event) => {
                                                 this.setState({
                                                     Phone: event.target.value
                                                 })
@@ -289,7 +295,8 @@ class NewUser extends React.Component{
                                         <div className="input-group-addon">
                                             <i className="fa fa-user"></i>
                                         </div>
-                                        <select className="form-control" type="text" id="user_role" value={this.state.Role} name="user_role" placeholder="Restaurant or User" onChange={(event) => {
+                                        <select className="form-control" type="text" id="user_role" value={this.state.Role} name="user_role" placeholder="Restaurant or User" 
+                                            onChange={(event) => {
                                                 this.setState({
                                                     Role: event.target.value
                                                 })
@@ -308,7 +315,8 @@ class NewUser extends React.Component{
                                         <div className="input-group-addon">
                                             <i className="fa fa-phone"></i>
                                         </div>
-                                        <input type="text" id="rest_id" value={this.state.RestID} name="rest_id" placeholder="Rest ID" className="form-control input-md" onChange={(event) => {
+                                        <input type="text" id="rest_id" value={this.state.RestID} name="rest_id" placeholder="Rest ID" className="form-control input-md" 
+                                            onChange={(event) => {
                                             this.setState({
                                                 RestID: event.target.value
                                             })
@@ -322,7 +330,7 @@ class NewUser extends React.Component{
                                 <label className="col-md-3 control-label" ></label>  
                                 <div className="col-md-7 offset-md-2">
                                     <button className="btn btn-success" onClick={this.enterInfo} type="submit"><span className="glyphicon glyphicon-thumbs-up"></span> Create New User </button>
-                                    <button className="btn btn-danger" value=""><span className="glyphicon glyphicon-remove-sign"></span> Login Page </button >
+                                    <button className="btn btn-danger" ><span className="glyphicon glyphicon-remove-sign"></span> Login Page </button >
                                 </div>
                             </div>
                             

@@ -28,6 +28,34 @@ var helpers = {
         });
     },
 
+    updateuserrestinfo: function (id,info) {
+        console.log("ID is: " + id +" Info Is " + info);
+
+        return axios.put('/api/updateuserrestinfo', {
+            id: id,
+            restID: info
+           
+        }).then(function (results) {
+            console.log("Ran Helpers:updateuserinfo");
+            console.log(results);
+            return (results);
+        })
+    },
+
+    updateuserroleinfo: function (id,info) {
+        console.log("ID is: " + id +" Info Is " + info);
+
+        return axios.put('/api/updateuserroleinfo', {
+            id: id,
+            role: info
+           
+        }).then(function (results) {
+            console.log("Ran Helpers:updateuserinfo");
+            console.log(results);
+            return (results);
+        })
+    },
+
     guestupdate: function () {
         console.log("Running testRetrieve");
         var testid = '1';
@@ -44,7 +72,7 @@ var helpers = {
     },
 
     allguestlist: function () {
-        axios.get('/api/admin').then(function (results) {
+        return axios.get('/api/userlist').then(function (results) {
             console.log(results);
             return (results);
         })
@@ -58,8 +86,7 @@ var helpers = {
     },
 
     addnewuser: function (newuser) {
-        return
-            axios
+        return axios
                 .post('/api/newuser',
                 {
                     first_name: newuser.FirstName,
@@ -73,7 +100,7 @@ var helpers = {
                     restID: newuser.RestID
 
                 })
-                .then(results => {
+                .then(function (results) {
                     console.log("completed post /api/newuser");
                     return (results);
                 });
@@ -147,6 +174,24 @@ var helpers = {
             return (results);
         })
     },
+
+    guestpurchasehistory: function () {
+        return axios.get('/api/purchasehistory').then(function (results) {
+            console.log("Ran Helpers:purchasehistory");
+            console.log(results);
+            return (results);
+        })
+    },
+
+    completedorders: function () {
+        return axios.get('/api/completedorders').then(function (results) {
+            console.log("Ran Helpers:completedorders");
+            console.log(results);
+            return (results);
+        })
+    },
+
+
 
     addplate: function (platedetails) {
 

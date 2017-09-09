@@ -8,13 +8,14 @@ class UserMain extends React.Component {
         return (
             <div className="row">
                 <div className="col-md-4">
-                    <h1><Link to ="/plates"> Today's Menu </Link> </h1>
+                    <h1><Link to ="/purchaseplates"> Today's Menu </Link> </h1>
                 </div>
                 <div className="col-md-4">
-                    <h1> Order History </h1>
+                <h1><Link to ="/purchasehistory"> Order History </Link> </h1>
                 </div>
                 <div className="col-md-4">
-                    <h1> Cart Checkout </h1>
+                <h1><Link to ="/purchasesummary"> Cart Checkout </Link> </h1>
+                  
                 </div>
             </div>
         )

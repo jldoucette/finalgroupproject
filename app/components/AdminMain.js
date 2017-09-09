@@ -8,13 +8,13 @@ class AdminMain extends React.Component {
         return (
             <div className="row">
                 <div className="col-md-4">
-                    <h1> FILL IN HERE </h1>
+                <h1><Link to ="/restaurants"> List Restaurants </Link> </h1>
                 </div>
                 <div className="col-md-4">
-                    <h1> Order History </h1>
+                <h1><Link to ="/addrestaurant"> Add Restaurant </Link> </h1>
                 </div>
                 <div className="col-md-4">
-                    <h1> Cart Checkout </h1>
+                <h1><Link to ="/edituser"> Edit User </Link> </h1>
                 </div>
             </div>
         )

@@ -153,8 +153,42 @@ app.get("/pendingorders", function (req, res) {
   }
 });
 
+app.get("/completedorders", function (req, res) {
+  if (!userLoggedIn) {
+    res.redirect('/notloggedin');
+  }
+  if (userLoggedIn && userRole == "R") {
+    res.sendFile(__dirname + "/public/index.html");
+  }
+  else {
+    res.redirect('/notauthorized');
+  }
+});
+
 app.get("/userhome", function (req, res) {
-  res.sendFile(__dirname + "/public/index.html");
+  if (!userLoggedIn) {
+    res.redirect('/notloggedin');
+  }
+  if (userLoggedIn && userRole == "U") {
+    res.sendFile(__dirname + "/public/index.html");
+  }
+  else {
+    res.redirect('/notauthorized');
+  }
+
+});
+
+app.get("/edituser", function (req, res) {
+  if (!userLoggedIn) {
+    res.redirect('/notloggedin');
+  }
+  if (userLoggedIn && userRole == "A") {
+    res.sendFile(__dirname + "/public/index.html");
+  }
+  else {
+    res.redirect('/notauthorized');
+  }
+
 });
 
 
@@ -434,6 +468,38 @@ app.put("/api/completeplate", function (req, res) {
     });
 });
 
+app.put("/api/updateuserrestinfo", function (req, res) {
+  var id = req.body.id;
+  var newvalue=req.body.restID;
+  console.log("$%$%^$^$%#$#$@ ID is "+id+"new Value is "+ newvalue);
+  db.guests.update({
+    restID: newvalue
+  }, {
+      where: {
+        id: id
+      }
+    }).then(function (data) {
+      res.json(data);
+    });
+});
+
+app.put("/api/updateuserroleinfo", function (req, res) {
+  var id = req.body.id;
+  var newvalue=req.body.role;
+  console.log("$%$%^$^$%#$#$@ ID is "+id+"new Value is "+ newvalue);
+  db.guests.update({
+    user_role: newvalue
+  }, {
+      where: {
+        id: id
+      }
+    }).then(function (data) {
+      res.json(data);
+    });
+});
+
+
+
 app.post("/api/addrestaurant", function (req, res) {
   db.restaurants.create({
     restname: req.body.RestaurantName,
@@ -529,6 +595,38 @@ app.put('/api/purchaseorder', function (req, res) {
   });
 });
 
+app.get('/api/purchasehistory', function (req, res) {
+  db.purchases.findAll({
+    order: [['createdAt', 'DESC']],
+    where: {
+      guestId: userIdentity,
+      paid: true,
+      completed:true,
+      'quantity': { $gte: 1 }
+    },
+    include: [db.plates, db.restaurants]
+
+  }).then(function (data) {
+    res.json(data);
+  });
+});
+
+app.get('/api/completedorders', function (req, res) {
+  db.purchases.findAll({
+    order: [['createdAt', 'DESC']],
+    where: {
+      restaurantId: userRestaurant,
+      paid: true,
+      completed:true,
+      'quantity': { $gte: 1 }
+    },
+    include: [db.plates, db.restaurants]
+
+  }).then(function (data) {
+    res.json(data);
+  });
+});
+
 app.get("/api/restaurants", function (req, res) {
   db.restaurants.findAll({
     order: ['restname']
@@ -537,7 +635,7 @@ app.get("/api/restaurants", function (req, res) {
   });
 });
 
-app.get('/api/admin', function (req, res) {
+app.get('/api/userlist', function (req, res) {
   db.guests.findAll({
     order: [
       ['user_role', 'ASC'],

@@ -55,12 +55,12 @@ class Restaurants extends React.Component {
                                 {this.state.restaurants.map((restaurant, index) => {
                                     return (
                                         <li key={restaurant.id}>
-                                            {restaurant.restname}
-                                            {restaurant.address}
-                                            {restaurant.phone}
-                                            {restaurant.hours}
-                                            {restaurant.email}
-                                            {restaurant.createdBy}
+                                            <span><strong>Restauant:</strong> {restaurant.restname} </span> 
+                                            <span><strong> Address/Phone:</strong> {restaurant.address} </span>
+                                            <span>{restaurant.phone} </span> 
+                                            <span><strong> Hours:</strong> {restaurant.hours} </span> 
+                                            <span><strong> Email:</strong> {restaurant.email} </span> 
+                                            <span><strong> Created By:</strong> {restaurant.createdBy} </span> 
                                         </li>
                                     );
                                 })}

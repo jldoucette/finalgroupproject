@@ -4,6 +4,17 @@ import React from "react";
 import helpers from "../utils/helpers.js";
 import UpdateUser from "./UpdateUser.js";
 
+const divStyle = {
+    backgroundColor: "beige",
+}
+
+const divStyle2 = {
+    backgroundColor: "beige",
+    textAlign: "center",
+    fontSize: "25px",
+    fontFamily: 'Bree Serif'
+}
+
 class EditUser extends React.Component {
     constructor(props) {
         super(props);
@@ -78,7 +89,7 @@ class EditUser extends React.Component {
                 helpers.updateuserrestinfo(id, info).then(function () {
                     console.log("Update User Rest Component Completed");
                 });
-                console.log("User Restaurant Updated");   
+                console.log("User Restaurant Updated");
                 // this.setState = {
                 //     FirstName: "",
                 //     LastName: "",
@@ -92,46 +103,25 @@ class EditUser extends React.Component {
                 break;
         }
         this.getuserlist();
-    
+
     }
 
-    // collectInfo(event) {
-    //     event.preventDefault();
-    //     console.log("This.state");
-    //     console.log(this.state);
-
-    //     var userinput = {
-    //         FirstName: this.state.FirstName,
-    //         LastName: this.state.LastName,
-    //         Email: this.state.Email,
-    //         Address: this.state.Address,
-    //         Phone: this.state.Phone,
-    //         Password: this.state.Password,
-    //         Role: this.state.Role,
-    //         RestID: this.state.RestID
-    //     }
-    //     console.log("This user passed");
-    //     console.log(userinput);
-    //     helpers.updateuser(userinput).then((response) => {
-    //         this.getusers();
-    //         console.log("Edit User Completed");
-    //     });
-
-    // }
 
     render() {
         return (
             <div className="row">
-                <h2>Edit User Page</h2>
-                <div className="col-md-6">
-                    <div className="row" id="restaurantlist">
-                        <h2>Current Users</h2>
-                        <ul>
-                            {this.state.guests.map((guest, index) => {
-                                return (
-                                    <li key={guest.id}>
-                                        FirstName: {guest.first_name}<br />,
-                                                <div className="form-group">
+                
+                <div className="col-md-12" >
+                    <h2 style={divStyle2}>Edit User Page</h2>
+                    <h2 style={divStyle2} >Current Users</h2>
+                    <ul>
+                        {this.state.guests.map((guest, index) => {
+                            return (
+                                
+                                <div key={guest.id} >
+                                    <div className="col-sm-6" style={divStyle}>
+                                        FirstName: {guest.first_name }<br />
+                                        <div className="form-group">
                                             <label className="col-md-3 control-label" htmlFor="first_name">First Name:</label>
                                             <input type="text" id="first_name" value={this.state.FirstName} name="first_name" placeholder={guest.first_name} onChange={(event) => {
                                                 this.setState({
@@ -142,11 +132,10 @@ class EditUser extends React.Component {
                                                 guest.id,
                                                 this.state.FirstName,
                                                 "first"
-
                                             )}><span className="glyphicon glyphicon-thumbs-up"></span> Update Info</button>
                                         </div>
 
-                                        LastName: {guest.last_name}<br />,
+                                        LastName: {guest.last_name}<br />
                                         <div className="form-group">
                                             <label className="col-md-3 control-label" htmlFor="last_name">Last Name:</label>
                                             <input type="text" id="last_name" value={this.state.LastName} name="last_name" placeholder={guest.last_name} onChange={(event) => {
@@ -161,7 +150,7 @@ class EditUser extends React.Component {
 
                                             )}><span className="glyphicon glyphicon-thumbs-up"></span> Update Info</button>
                                         </div>
-                                        Email: {guest.email}<br />,
+                                        Email: {guest.email}<br />
                                         <div className="form-group">
                                             <label className="col-md-3 control-label" htmlFor="email">email:</label>
                                             <input type="text" id="email" value={this.state.email} name="email" placeholder={guest.email} onChange={(event) => {
@@ -176,8 +165,9 @@ class EditUser extends React.Component {
 
                                             )}><span className="glyphicon glyphicon-thumbs-up"></span> Update Info</button>
                                         </div>
-                                        Username: {guest.username}<br />,
-                                        Address: {guest.address}<br />,
+
+                                        Username: {guest.username}<br />
+                                        Address: {guest.address}<br />
                                         <div className="form-group">
                                             <label className="col-md-3 control-label" htmlFor="address">Address:</label>
                                             <input type="text" id="address" value={this.state.Address} name="address" placeholder={guest.address} onChange={(event) => {
@@ -189,10 +179,10 @@ class EditUser extends React.Component {
                                                 guest.id,
                                                 this.state.Address,
                                                 "address"
-
                                             )}><span className="glyphicon glyphicon-thumbs-up"></span> Update Info</button>
                                         </div>
-                                        Phone: {guest.phone}<br />,
+
+                                        Phone: {guest.phone}<br />
                                         <div className="form-group">
                                             <label className="col-md-3 control-label" htmlFor="phone">Phone:</label>
                                             <input type="text" id="phone" value={this.state.Phone} name="phone" placeholder={guest.phone} onChange={(event) => {
@@ -207,7 +197,8 @@ class EditUser extends React.Component {
 
                                             )}><span className="glyphicon glyphicon-thumbs-up"></span> Update Info</button>
                                         </div>
-                                        Role: {guest.user_role}<br />,
+
+                                        Role: {guest.user_role}<br />
                                         <div className="form-group">
                                             <label className="col-md-3 control-label" htmlFor="user_role">User Role:</label>
                                             <input type="text" id="user_role" value={this.state.Role} name="user_role" placeholder={guest.user_role} onChange={(event) => {
@@ -222,6 +213,7 @@ class EditUser extends React.Component {
 
                                             )}><span className="glyphicon glyphicon-thumbs-up"></span> Update Info</button>
                                         </div>
+
                                         RestID: {guest.RestID}<br />
                                         <div className="form-group">
                                             <label className="col-md-3 control-label" htmlFor="restID">Restaurant ID:</label>
@@ -237,30 +229,16 @@ class EditUser extends React.Component {
 
                                             )}><span className="glyphicon glyphicon-thumbs-up"></span> Update Info</button>
                                         </div>
+
                                         <br />
                                         {/* <button onClick={this.handleClick}/>Edit User 
                                         {this.state.clicked ? <UpdateUser userdetails={this.state.guest}  />: null}/>  */}
                                         <button className="btn btn-default btn-small" onClick={() => this.updateUser(guest)}>Edit User</button>
-                                        {/* <button className="btn btn-success btn-small" onClick={() => this.pushInfo(
-                                            guest.id,
-                                            this.state.FirstName,
-                                            this.state.LastName,
-                                            this.state.Email,
-                                            this.state.Address,
-                                            this.state.Phone,
-                                            this.state.Role,
-                                            this.state.RestId
-                                        )}><span className="glyphicon glyphicon-thumbs-up"></span> Update Info</button> */}
-                                    </li>
-
-                                );
-                            })}
-                        </ul>
-
-
-
-
-                    </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </ul>
                 </div>
             </div>
         );

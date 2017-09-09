@@ -37,31 +37,36 @@ class Restaurants extends React.Component {
     }
 
 
-    
-
     render() {
         return (
             <div className="row">
-                <div className="col-md-10">
-                    <h2>Add Restaurant Page</h2>
-                    <div className="row" id="restaurantlist">
-                        <h2>Current Restaurants</h2>
-                        <ul>
-                            {this.state.restaurants.map((restaurant, index) => {
-                                return (
-                                    <li key={restaurant.id}>
-                                        {restaurant.restname}
-                                        {restaurant.address}
-                                        {restaurant.phone}
-                                        {restaurant.hours}
-                                        {restaurant.email}
-                                        {restaurant.createdBy}
-                                    </li>
-                                );
-                            })}
-                        </ul>
+                
+                <div className="col-md-12">
+                    <div className="panel panel-default">
+
+                        <div className="panel-heading-custom panel-heading">
+                            <h2 className="panel-title">Current Restaurants</h2>
+                        </div>
+
+                        <div className="panel-body">
+                            <ul>
+                                {this.state.restaurants.map((restaurant, index) => {
+                                    return (
+                                        <li key={restaurant.id}>
+                                            {restaurant.restname}
+                                            {restaurant.address}
+                                            {restaurant.phone}
+                                            {restaurant.hours}
+                                            {restaurant.email}
+                                            {restaurant.createdBy}
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </div>
                     </div>
                 </div>
+
             </div>
         );
     };

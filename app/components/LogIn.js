@@ -110,7 +110,7 @@ class LogIn extends React.Component {
                     <br />
                     <div className="panel panel-default">
                         <div className="panel-heading panel-heading-custom">
-                            <h1>Login</h1>
+                            <h1 className="panel-title">Login</h1>
                         </div>
                         <div className="panel-body">
                             <div className="form-group">

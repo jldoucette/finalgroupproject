@@ -4,6 +4,15 @@ import React from "react";
 import helpers from "../utils/helpers.js";
 
 var checkRestaurantState;
+
+const fontStyle = {
+    fontFamily: "Bree Serif",
+}
+
+const paddingBuffer = {
+    paddingBottom: "15px"
+}
+
 class AddRestaurant extends React.Component {
     constructor(props) {
         super(props);
@@ -26,50 +35,20 @@ class AddRestaurant extends React.Component {
 
     componentDidMount() {
         this.getrestaurant();
-        // helpers.restaurantlist().then(function (response) {
-        //     console.log("Got Restaurants from AddRestaurant.js Component");
-        //     console.log(response);
-        //     console.log(response.data);
-        //     this.setState({
-        //         restaurants: response.data
-        //     });
-        //     checkRestaurantState=this.state.restaurants;
-        // }.bind(this));
+
     }
 
-    // componentDidUpdate(prevState) {
-    //     if(this.state.restaurant !== checkRestaurantState) {
-    //     console.log("State has changed.");
-    //     this.getrestaurant();
-    //     }
-    //     else {
-    //     console.log("State has NOT changed.") ; 
-    //     }
-        // console.log("componentdidupdate this.state "+JSON.stringify(this.state.restaurants));
-        // console.log("componentdidupdate previousState "+JSON.stringify(prevState));        
-        // if(this.state !== previousState) {
-            // helpers.restaurantlist().then(function (response) {
-            //     console.log("Got updated Restaurants from AddRestaurant.js Component");
-            //     console.log(response);
-            //     console.log(response.data);
-            //     this.setState({
-            //         restaurants: response.data
-            //     });
-            // }.bind(this));
-        // }
-        // }
-
-           getrestaurant() {
-            helpers.restaurantlist().then(function (response) {
-                console.log("Got updated Restaurants from AddRestaurant.js Component");
-                console.log(response);
-                console.log(response.data);
-                this.setState({
-                    restaurants: response.data
-                });
-                checkRestaurantState=response.data;
-            }.bind(this));
-        }
+    getrestaurant() {
+        helpers.restaurantlist().then(function (response) {
+            console.log("Got updated Restaurants from AddRestaurant.js Component");
+            console.log(response);
+            console.log(response.data);
+            this.setState({
+                restaurants: response.data
+            });
+            checkRestaurantState=response.data;
+        }.bind(this));
+    }
 
     collectInfo(event) {
         event.preventDefault();
@@ -96,37 +75,42 @@ class AddRestaurant extends React.Component {
     render() {
         return (
             <div className="row">
-                 <h2>Add Restaurant Page</h2>
                 <div className="col-md-6">
-                    <div className="row" id="restaurantlist">
-                        <h2>Current Restaurants</h2>
+                    <div className="panel panel-default">
+                        <div className="panel-heading-custom panel-heading">
+                            <h2 className="panel-title" style={fontStyle}>Current Restaurants</h2>
+                        </div>
                         <ul>
                             {this.state.restaurants.map((restaurant, index) => {
                                 return (
-                                    <li key={restaurant.id}>
-                                        Restaurant Name: {restaurant.restname}<br />
-                                        Address: {restaurant.address}<br />
-                                        Phone: {restaurant.phone}<br />
-                                        Hours: {restaurant.hours}<br />
-                                        Email: {restaurant.email}<br />
-                                        Created By: {restaurant.createdBy}
-                                    </li>
+                                    <div className="hello" style={paddingBuffer}>
+                                        <div key={restaurant.id}>
+                                            Restaurant Name: {restaurant.restname}<br />
+                                            Address: {restaurant.address}<br />
+                                            Phone: {restaurant.phone}<br />
+                                            Hours: {restaurant.hours}<br />
+                                            Email: {restaurant.email}<br />
+                                            Created By: {restaurant.createdBy}
+                                        </div>
+                                    </div>
                                 );
                             })}
                         </ul>
-                    </div>
-                    </div>
-                    <div className="col-md-6">
-                    <div id="addrestaurantsection">
-                        <div className="newrestaurant">
-                            <h2>Create New Restaurant</h2>
+                    </div>  
+                </div>
 
+                <div className="col-md-5 col-md-offset-1">
+                    <div className="panel panel-default">
+                        <div className="panel-heading-custom panel-heading">
+                            <h2 className="panel-title" style= {fontStyle }>Create New Restaurant</h2>
+                        </div>
+                        <div className="panel-body">
                             <form className="create-update-form" >
                                 <div className="form-horizontal">
 
                                     <div className="form-group form-group-lg">
-                                        <label className="col-md-3 control-label" htmlFor="restname">Restaurant Name:</label>
-                                        <div className="col-md-4">
+                                        <label className="col-md-4 control-label" htmlFor="restname">Restaurant Name:</label>
+                                        <div className="col-md-7">
                                             <input type="text" id="restname" value={this.state.RestaurantName} name="restname" onChange={(event) => {
                                                 this.setState({
                                                     RestaurantName: event.target.value
@@ -136,8 +120,8 @@ class AddRestaurant extends React.Component {
                                     </div>
 
                                     <div className="form-group form-group-lg">
-                                        <label className="col-md-3 control-label" htmlFor="address">Address:</label>
-                                        <div className="col-md-4">
+                                        <label className="col-md-4 control-label" htmlFor="address">Address:</label>
+                                        <div className="col-md-7">
                                             <input type="text" id="address" value={this.state.Address} name="address" onChange={(event) => {
                                                 this.setState({
                                                     Address: event.target.value
@@ -147,8 +131,8 @@ class AddRestaurant extends React.Component {
                                     </div>
 
                                     <div className="form-group form-group-lg">
-                                        <label className="col-md-3 control-label" htmlFor="hours">Hours:</label>
-                                        <div className="col-md-4">
+                                        <label className="col-md-4 control-label" htmlFor="hours">Hours:</label>
+                                        <div className="col-md-7">
                                             <input type="text" id="hours" value={this.state.Hours} name="hours" onChange={(event) => {
                                                 this.setState({
                                                     Hours: event.target.value
@@ -158,8 +142,8 @@ class AddRestaurant extends React.Component {
                                     </div>
 
                                     <div className="form-group form-group-lg">
-                                        <label className="col-md-3 control-label" htmlFor="phone">Phone:</label>
-                                        <div className="col-md-4">
+                                        <label className="col-md-4 control-label" htmlFor="phone">Phone:</label>
+                                        <div className="col-md-7">
                                             <input type="text" id="phone" value={this.state.Phone} name="phone" onChange={(event) => {
                                                 this.setState({
                                                     Phone: event.target.value
@@ -169,8 +153,8 @@ class AddRestaurant extends React.Component {
                                     </div>
 
                                     <div className="form-group form-group-lg">
-                                        <label className="col-md-3 control-label" htmlFor="email">Email:</label>
-                                        <div className="col-md-4">
+                                        <label className="col-md-4 control-label" htmlFor="email">Email:</label>
+                                        <div className="col-md-7">
                                             <input type="text" id="email" value={this.state.Email} name="email" onChange={(event) => {
                                                 this.setState({
                                                     Email: event.target.value
@@ -179,16 +163,16 @@ class AddRestaurant extends React.Component {
                                         </div>
                                     </div>
 
-                                    <div className='col-md-10'>
-                                        <button className="btn btn-default btn-large" onClick={this.collectInfo} type="submit">Create Restaurant</button>
-                                    </div>
+
+                                    <button className="btn btn-secondary" onClick={this.collectInfo}  type="submit">Create Restaurant</button>
+
 
                                 </div>
                             </form>
-
                         </div>
                     </div>
                 </div>
+
             </div>
         );
     };

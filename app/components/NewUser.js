@@ -1,7 +1,7 @@
 // Include React
 import React from "react";
 import helpers from "../utils/helpers.js";
-
+import { Link } from 'react-router-dom';
 
 
 // Create the Main component
@@ -15,9 +15,9 @@ class NewUser extends React.Component{
                 Email: "",
                 Address: "",
                 Phone: "",
-                Password: "",
-                Role: "",
-                RestID: ""
+                Password: ""
+                // Role: "",
+                // RestID: ""
             };
 
     this.enterInfo = this.enterInfo.bind(this);
@@ -37,6 +37,18 @@ class NewUser extends React.Component{
     //     });
     // }
 
+    clearfields() {
+        var self = this;
+        this.setState({
+            FirstName: "",
+            LastName: "",
+            Email: "",
+            Address: "",
+            Phone: "",
+            Password: ""
+        });
+    }
+
     enterInfo(event) {
         event.preventDefault();
         var newuserinput = {
@@ -45,9 +57,9 @@ class NewUser extends React.Component{
             Email: this.state.Email,
             Address: this.state.Address,
             Phone: this.state.Phone,
-            Password: this.state.Password,
-            Role: this.state.Role,
-            RestID: this.state.RestID 
+            Password: this.state.Password
+            // Role: this.state.Role,
+            // RestID: this.state.RestID 
         }       
         console.log(this.state);
 
@@ -65,115 +77,6 @@ class NewUser extends React.Component{
     return (
       <div className="row" >
 
-            {/* Jon Form */}
-            {/* <div className="container col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6 col-lg-offset-4 col-lg-4">
-                <br />
-                <div className="panel panel-default">
-                    <div className="panel-heading">
-                        <h2>Create New User</h2>
-                    </div>
-
-                    <div className="panel-body">
-                        <form className="create-update-form" >
-                            <div className="form-horizontal">
-
-                                <div className="form-group">
-                                    <label className="col-md-3 control-label" htmlFor="first_name">First Name:</label>
-                                    <div className="col-md-4">
-                                            <input type="text" id="first_name" value={this.state.FirstName} name="first_name" onChange={(event) => {
-                                                this.setState({
-                                                    FirstName: event.target.value
-                                                })
-                                            }} />
-                                    </div>
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="col-md-3 control-label" htmlFor="last_name">Last Name:</label>
-                                    <div className="col-md-4">
-                                        <input type="text" id="last_name" value={this.state.LastName}  name="last_name" onChange={(event) => {
-                                            this.setState({
-                                                LastName: event.target.value
-                                            })
-                                        }}/>
-                                    </div>
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="col-md-3 control-label" htmlFor="username">Email (will be your username):</label>
-                                    <div className="col-md-4">
-                                    <input type="text" id="username" value={this.state.Email} name="username" onChange={(event) => {
-                                            this.setState({
-                                                Email: event.target.value
-                                            })
-                                        }}/>
-                                    </div>
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="col-md-3 control-label" htmlFor="address">Address (street,city,state,zip):</label>
-                                    <div className="col-md-4">
-                                    <input type="text" id="address" value={this.state.Address} name="address" onChange={(event) => {
-                                            this.setState({
-                                                Address: event.target.value
-                                            })
-                                        }}/>
-                                    </div>
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="col-md-3 control-label" htmlFor="phone">Phone:</label>
-                                    <div className="col-md-4">
-                                    <input type="text" id="phone" value={this.state.Phone} name="phone" onChange={(event) => {
-                                            this.setState({
-                                                Phone: event.target.value
-                                            })
-                                        }}/>
-                                    </div>
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="col-md-3 control-label" htmlFor="password">Password:</label>
-                                    <div className="col-md-4">
-                                    <input type="password" id="password" value={this.state.Password} name="password" onChange={(event) => {
-                                            this.setState({
-                                                Password: event.target.value
-                                            })
-                                        }}/>
-                                    </div>
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="col-md-3 control-label" htmlFor="user_role">Role (R or U):</label>
-                                    <div className="col-md-4">
-                                    <input type="text" id="user_role"value={this.state.Role} name="user_role" onChange={(event) => {
-                                            this.setState({
-                                                Role: event.target.value
-                                            })
-                                        }}/>
-                                    </div>
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="col-md-3 control-label" htmlFor="rest_id">If R, Rest ID:</label>
-                                    <div className="col-md-4">
-                                        <input type="text" id="rest_id" value={this.state.RestID} name="rest_id" onChange={(event) => {
-                                            this.setState({
-                                                RestID: event.target.value
-                                            })
-                                        }}/>
-                                    </div>
-                                </div>
-
-                                <div className='col-md-10'>
-                                    <button className="btn btn-default btn-large" onClick={this.enterInfo} type="submit">Create User</button>
-                                    <a className="btn btn-default" href="/login">Login Page</a>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>    
-            </div> */}
     
             {/* Geo form */}
             <div className= "col-md-6 col-md-offset-3">
@@ -288,7 +191,7 @@ class NewUser extends React.Component{
                                 </div>
                             </div>
 
-                            <div className="form-group">
+                            {/* <div className="form-group">
                                 <label className="col-md-3 control-label" htmlFor="user_role">Role (R or U):</label>  
                                 <div className="col-md-7">
                                     <div className="input-group">
@@ -306,8 +209,8 @@ class NewUser extends React.Component{
                                         </select>
                                     </div>
                                 </div>
-                            </div> 
-
+                            </div>  */}
+{/* 
                             <div className="form-group">
                                 <label className="col-md-3 control-label" htmlFor="rest_id">If R, Rest ID: </label>  
                                 <div className="col-md-7">
@@ -323,14 +226,15 @@ class NewUser extends React.Component{
                                         }}/>
                                     </div>
                                 </div>
-                            </div>                             
+                            </div>                              */}
                             
 
                             <div className="form-group">
                                 <label className="col-md-3 control-label" ></label>  
                                 <div className="col-md-7 offset-md-2">
                                     <button className="btn btn-success" onClick={this.enterInfo} type="submit"><span className="glyphicon glyphicon-thumbs-up"></span> Create New User </button>
-                                    <button className="btn btn-primary" ><span className="fa fa-sign-in"></span> Login Page </button >
+                                    <button className="btn btn-success"><Link to='/login'> Login </Link></button>
+                                
                                 </div>
                             </div>
                             
@@ -345,5 +249,4 @@ class NewUser extends React.Component{
   };
 };
 
-// Export the component back for use in other files
 export default NewUser;

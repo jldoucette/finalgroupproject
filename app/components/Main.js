@@ -29,6 +29,7 @@ import CompletedOrders from './CompletedOrders.js';
 import PendingOrders from './PendingOrders.js';
 import NotAuthorized from './NotAuthorized.js';
 import NotLoggedIn from './NotLoggedIn.js';
+import ThisIsIt from './ThisIsIt.js';
 
 
 
@@ -39,6 +40,7 @@ class Main extends React.Component {
                 <Header />
 
                 <Switch>
+                <Route exact path="/" component={AboutUs} />
                     <Route exact path="/aboutus" component={AboutUs} />
                     {/* <Route exact path="/newplates" component={Plates} /> */}
                     <Route exact path="/login" component={LogIn} />
@@ -50,6 +52,7 @@ class Main extends React.Component {
                     <Route exact path="/admin" component={AdminMain} />
 
                     <Route exact path="/testing" component={Testing} />
+                    <Route exact path="/thisisit" component={ThisIsIt} />
                     <Route exact path="/addplate" component={AddPlate} />
                     <Route exact path="/addrestaurant" component={AddRestaurant} />
                     <Route exact path="/restaurants" component={Restaurants} />

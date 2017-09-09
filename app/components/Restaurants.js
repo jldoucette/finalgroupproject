@@ -2,6 +2,7 @@
 import React from "react";
 // import { Link } from 'react-router-dom';
 import helpers from "../utils/helpers.js";
+import { Link } from "react-router-dom";
 
 class Restaurants extends React.Component {
     constructor(props) {
@@ -46,6 +47,7 @@ class Restaurants extends React.Component {
 
                         <div className="panel-heading-custom panel-heading">
                             <h2 className="panel-title">Current Restaurants</h2>
+                            <button className="btn btn-medium"><Link to='/admin'> Back to Menu </Link></button>
                         </div>
 
                         <div className="panel-body">

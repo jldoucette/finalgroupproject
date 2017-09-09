@@ -2,6 +2,7 @@
 import React from "react";
 // import { Link } from 'react-router-dom';
 import helpers from "../utils/helpers.js";
+import { Link } from "react-router-dom";
 
 class AddPlate extends React.Component {
     constructor(props) {
@@ -55,6 +56,7 @@ class AddPlate extends React.Component {
                     <div className="panel panel-default">
                         <div className="panel-heading">
                             <h1 className="panel-title">Add Plate Page</h1>
+                            <button className="btn btn-medium"><Link to='/restaurant'> Back to Menu </Link></button>
                         </div>
                         <div className="panel-body">
                             <form className="create-update-form" >

@@ -149,8 +149,7 @@ var helpers = {
     },
 
     addplate: function (platedetails) {
-
-        axios
+        return axios
             .post('/api/addplate',
             {
 

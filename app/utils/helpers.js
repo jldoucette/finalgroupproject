@@ -73,7 +73,7 @@ var helpers = {
                     restID: newuser.RestID
 
                 })
-                .then(results => {
+                .then((results) => {
                     console.log("completed post /api/newuser");
                     return (results);
                 });

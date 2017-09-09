@@ -11,6 +11,8 @@ class PurchasePlates extends React.Component {
             plates: [],
             quantityordered: ""
         };
+        
+
     }
 
 
@@ -19,10 +21,12 @@ class PurchasePlates extends React.Component {
             console.log("Purchased Plate from PurchasePlates.js Component");
             console.log(response);
             console.log(response.data);
+           
             this.getplates();
-            // this.setState({
-            //     plates: response.data
-            // });
+         
+            this.setState({
+                quantityordered: ""
+            });
         });
     }
 
@@ -40,6 +44,8 @@ class PurchasePlates extends React.Component {
     componentDidMount() {
         this.getplates();
     }
+
+
 
     render() {
         return (
@@ -72,6 +78,7 @@ class PurchasePlates extends React.Component {
                                                 {/* <input type="hidden" name="restID" value={plate.restaurantId} />
                                                 <input type="hidden" name="PlatePurchaseID" value={plate.id} /> */}
                                                 <button className="btn btn-default btn-large" onClick={() => this.purchaseplate(plate.id, plate.restaurantId, plate.quantity, this.state.quantityordered)}>Purchase</button>
+                                                
                                                 {/* <button type="submit">Purchase Meals</button> */}
 
                                             </li>

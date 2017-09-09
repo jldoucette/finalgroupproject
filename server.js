@@ -533,7 +533,8 @@ app.put("/api/updateguest", function (req, res) {
 app.get("/api/plates", function (req, res) {
   db.plates.findAll({
     order: ['plate_name'],
-    where: { quantity: { $gt: 0 } }
+    where: { quantity: { $gt: 0 },
+   restaurantId: userRestaurant}
   }).then(function (data) {
     res.json(data);
   });

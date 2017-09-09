@@ -132,6 +132,12 @@ var helpers = {
         })
     },
 
+    getplates: function() {
+        return axios.get('/api/plates').then(function(results){
+            return(results);
+            })
+        },
+
 
     purchaseplate: function (id, restid, priorquantity, quantity) {
         // var priorquantity="100";

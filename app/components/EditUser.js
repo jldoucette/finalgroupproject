@@ -63,14 +63,35 @@ class EditUser extends React.Component {
                     console.log("Update User Role Component Completed");
                 });
                 console.log("User Role Updated");
+                // this.setState = {
+                //     FirstName: "",
+                //     LastName: "",
+                //     Email: "",
+                //     Address: "",
+                //     Phone: "",
+                //     Password: "",
+                //     Role: "",
+                //     RestID: ""
+                // };
                 break;
             case "rest":
                 helpers.updateuserrestinfo(id, info).then(function () {
                     console.log("Update User Rest Component Completed");
                 });
-                console.log("User Restaurant Updated");
+                console.log("User Restaurant Updated");   
+                // this.setState = {
+                //     FirstName: "",
+                //     LastName: "",
+                //     Email: "",
+                //     Address: "",
+                //     Phone: "",
+                //     Password: "",
+                //     Role: "",
+                //     RestID: ""
+                // };
                 break;
         }
+        this.getuserlist();
     
     }
 

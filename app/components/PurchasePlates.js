@@ -15,6 +15,8 @@ class PurchasePlates extends React.Component {
             plates: [],
             quantityordered: ""
         };
+        
+
     }
 
 
@@ -23,10 +25,12 @@ class PurchasePlates extends React.Component {
             console.log("Purchased Plate from PurchasePlates.js Component");
             console.log(response);
             console.log(response.data);
+           
             this.getplates();
-            // this.setState({
-            //     plates: response.data
-            // });
+         
+            this.setState({
+                quantityordered: ""
+            });
         });
     }
 
@@ -44,6 +48,8 @@ class PurchasePlates extends React.Component {
     componentDidMount() {
         this.getplates();
     }
+
+
 
     render() {
         return (
@@ -63,6 +69,7 @@ class PurchasePlates extends React.Component {
                                         <strong>Main: </strong>{plate.protein} <strong> Side 1: </strong>{plate.side1} <strong> Side 2: </strong>{plate.side2} Side 3: {plate.side3}
                                         <strong>Quantity Available: </strong>{plate.quantity}<strong> Price per plate ${plate.price}</strong>
                                         <br />
+
 
                                         <label className="col-md-3 control-label" htmlFor="quantityordered">How Many Plates Would You Like?</label>
                                             <input type="text" id="quantityordered" value={this.state.quantityordered} name="quantityordered" onChange={(event) => {

@@ -70,8 +70,9 @@ var Payment = React.createClass({
         }).then(function(result){
             console.log(result);
             if(result.data.paid) {
+
                 self.props.onComplete("Paid")
-            }
+          }
             else {
                 self.props.onComplete("Failed")
             }
@@ -81,6 +82,7 @@ var Payment = React.createClass({
   },
 
   render: function() {
+
     if (this.state.stripeLoading) {
       return <div>Loading</div>;
     }
@@ -88,7 +90,7 @@ var Payment = React.createClass({
       return <div>Error</div>;
     }
     else if (this.state.paymentComplete) {
-      return <div>Payment Complete!</div>;
+      return <div>Payment Attempted</div>;
     }
     else {
       return (

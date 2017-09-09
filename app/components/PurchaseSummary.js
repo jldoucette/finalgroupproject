@@ -1,9 +1,12 @@
 // Include React
 import React from "react";
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, Route } from 'react-router-dom';
 import helpers from "../utils/helpers.js";
 import Payment from "./Payment.js";
+import NewUser from "./NewUser.js";
+import LogIn from "./LogIn.js";
 
+var paymentstatus;
 var stripetotalincents=0;
 
 class PurchaseSummary extends React.Component {
@@ -12,11 +15,16 @@ class PurchaseSummary extends React.Component {
         this.state = {
             purchases: [],
             purchasetotal:'',
-            stripepurchasetotal:''
-        
+            stripepurchasetotal:'',
+            redirect:false
         };
+        this.redirectOptions=this.redirectOptions.bind(this);
     }
 
+    redirectOptions(paymentresult) {
+        this.setState({ redirect: true });
+        paymentstatus=paymentresult;
+    }
 
 
     purchaseorder(id,ordertotal) {
@@ -76,6 +84,16 @@ class PurchaseSummary extends React.Component {
     }
 
     render() {
+
+        const { redirect } = this.state;
+        if (redirect && paymentstatus == 'Paid') {
+             <Redirect to='/newuser' />;
+        }
+        if (redirect && paymentstatus != 'Paid') {
+             <Redirect to='/login' />;
+        }
+    
+
         return (
             <div className="row">
                 <div className="col-md-8">
@@ -119,13 +137,10 @@ class PurchaseSummary extends React.Component {
                 <div className="col-md-3 col-md-offset-1">
                     <Payment totalAmount={this.state.stripepurchasetotal} onComplete={function(paymentresult){
                         console.log(paymentresult);
-                        if(paymentresult=="Paid") {
-                            return <Redirect to='/newuser'/>;
-                        }
-                        else {
-                            return <Redirect to='/login'/>;
-                        }
-                    }} />                    
+
+                    }} />
+                    
+
                 </div>
             </div>
 

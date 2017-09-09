@@ -109,22 +109,6 @@ class PurchaseSummary extends React.Component {
                                         <strong>Quantity Purchased: </strong>{purchase.quantity}<br />
                                         <strong> Price per plate ${purchase.plate.price}</strong><br />
 
-                                        {/* <div>
-                                            <label className="col-md-3 control-label" htmlFor="quantityordered">How Many purchases Would You Like?</label>
-                                                <input type="text" id="quantityordered" value={this.state.quantityordered} name="quantityordered" onChange={(event) => {
-                                                    this.setState({
-                                                        quantityordered: event.target.value
-                                                    })
-                                                }} />
-
-                                            <label for="quantityordered"> How Many Meals Would You Like? </label>
-                                            <input type="text" id="quantityordered" name="quantityordered" />
-                                            <input type="hidden" name="restID" value={plate.restaurantId} />
-                                            <input type="hidden" name="PlatePurchaseID" value={plate.id} />
-                                            <button className="btn btn-default btn-large" onClick={() => this.purchaseplate(plate.id, plate.restaurantId, plate.quantity, this.state.quantityordered)}>Pay For Order</button>
-                                            <button type="submit">Purchase Meals</button>
-                                        </div> */}
-
                                     </li>
                                 );
                             })}
@@ -137,7 +121,6 @@ class PurchaseSummary extends React.Component {
                 <div className="col-md-3 col-md-offset-1">
                     <Payment totalAmount={this.state.stripepurchasetotal} onComplete={function(paymentresult){
                         console.log(paymentresult);
-
                     }} />
                     
 

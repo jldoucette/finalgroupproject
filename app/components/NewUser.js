@@ -179,7 +179,7 @@ class NewUser extends React.Component{
             <div className= "col-md-6 col-md-offset-3">
                 <div className="panel panel-default"> 
                     <div className="panel-heading panel-heading-custom">
-                        <h2>Create New User</h2>
+                        <h2 className="panel-title">Create New User</h2>
                     </div>
 
                     <div className="panel-body">                                           

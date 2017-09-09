@@ -14,7 +14,6 @@ class PurchasePlates extends React.Component {
     }
 
 
-
     purchaseplate(id, restid, priorquantity, quantity) {
         helpers.purchaseplate(id,restid,priorquantity,quantity).then((response)=> {
             console.log("Purchased Plate from PurchasePlates.js Component");
@@ -26,8 +25,6 @@ class PurchasePlates extends React.Component {
             // });
         });
     }
-
-    
 
     getplates() {
         helpers.purchaseoptions().then((response)=> {

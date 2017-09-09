@@ -100,7 +100,9 @@ var helpers = {
                     restID: newuser.RestID
 
                 })
+
                 .then(function (results) {
+
                     console.log("completed post /api/newuser");
                     return (results);
                 });

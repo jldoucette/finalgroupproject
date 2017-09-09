@@ -3,6 +3,10 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import helpers from "../utils/helpers.js";
 
+const divStyle = {
+    backgroundColor: "beige"
+}
+
 
 class PurchaseHistory extends React.Component {
     constructor(props) {
@@ -47,47 +51,27 @@ class PurchaseHistory extends React.Component {
     render() {
         return (
             <div className="row">
-                <div className="col-md-8">
-                    <div id="purchasepage">
-                        <h2>Plates Purchased</h2>
-                        <div className='col-md-12'>
-                            <div>
+                <div className="col-md-8" style={divStyle}>
+                    
+                    <h2>Plates Purchased</h2>
+                    <div>
+                        <ul>
+                            {this.state.purchases.map((purchase, index) => {
+                                return (
+                                    <div key={purchase.id} className="col-md-7">
 
-                                <ul>
-                                    {this.state.purchases.map((purchase, index) => {
-                                        return (
-                                            <li key={purchase.id}>
+                                        From: <strong>{purchase.restaurant.restname}</strong><br />
+                                        {purchase.plate.description} <br />
+                                        <strong>Quantity Purchased: </strong>{purchase.quantity}<br />
+                                        <strong> Price per plate ${purchase.plate.price}</strong><br />
 
-                                                From: <strong>{purchase.restaurant.restname}</strong><br />
-                                                {purchase.plate.description} <br />
-                                                <strong>Quantity Purchased: </strong>{purchase.quantity}<br />
-                                                <strong> Price per plate ${purchase.plate.price}</strong><br />
-
-                                                {/* <label className="col-md-3 control-label" htmlFor="quantityordered">How Many purchases Would You Like?</label>
-                                                    <input type="text" id="quantityordered" value={this.state.quantityordered} name="quantityordered" onChange={(event) => {
-                                                        this.setState({
-                                                            quantityordered: event.target.value
-                                                        })
-                                                    }} /> */}
-
-
-
-                                                {/* <label for="quantityordered"> How Many Meals Would You Like? </label>
-                                                <input type="text" id="quantityordered" name="quantityordered" /> */}
-                                                {/* <input type="hidden" name="restID" value={plate.restaurantId} />
-                                                <input type="hidden" name="PlatePurchaseID" value={plate.id} /> */}
-                                                {/* <button className="btn btn-default btn-large" onClick={() => this.purchaseplate(plate.id, plate.restaurantId, plate.quantity, this.state.quantityordered)}>Pay For Order</button> */}
-                                                {/* <button type="submit">Purchase Meals</button> */}
-
-                                            </li>
-                                        );
-                                    })}
-                                    <button><Link to='/userhome'> Return to Main Menu</Link></button>
-                                </ul>
-
-                            </div>
-                        </div>
+                                    </div>
+                                );
+                            })}
+                            <button className="btn btn-secondary"><Link to='/userhome'> Return to Main Menu</Link></button>
+                        </ul>
                     </div>
+
                 </div>
             </div>
 

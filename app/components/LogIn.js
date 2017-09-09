@@ -109,7 +109,7 @@ class LogIn extends React.Component {
                 <div className="container col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6 col-lg-offset-4 col-lg-4" >
                     <br />
                     <div className="panel panel-default">
-                        <div className="panel-heading">
+                        <div className="panel-heading panel-heading-custom">
                             <h1>Login</h1>
                         </div>
                         <div className="panel-body">

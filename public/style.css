@@ -5,3 +5,10 @@ body {
     background-size:cover; 
     color: blue; 
 }
+
+.panel-default > .panel-heading-custom{
+    background-image: none;
+    background-color: #333;
+    color: #ffffff;
+    text-align: center;
+  }

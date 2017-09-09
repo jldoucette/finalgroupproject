@@ -178,7 +178,7 @@ class NewUser extends React.Component{
             {/* Geo form */}
             <div className= "col-md-6 col-md-offset-3">
                 <div className="panel panel-default"> 
-                    <div className="panel-heading">
+                    <div className="panel-heading panel-heading-custom">
                         <h2>Create New User</h2>
                     </div>
 
@@ -330,7 +330,7 @@ class NewUser extends React.Component{
                                 <label className="col-md-3 control-label" ></label>  
                                 <div className="col-md-7 offset-md-2">
                                     <button className="btn btn-success" onClick={this.enterInfo} type="submit"><span className="glyphicon glyphicon-thumbs-up"></span> Create New User </button>
-                                    <button className="btn btn-danger" ><span className="glyphicon glyphicon-remove-sign"></span> Login Page </button >
+                                    <button className="btn btn-primary" ><span className="fa fa-sign-in"></span> Login Page </button >
                                 </div>
                             </div>
                             

@@ -3,6 +3,16 @@ var ReactScriptLoaderMixin = require('react-script-loader').ReactScriptLoaderMix
 var axios = require("axios");
 
 
+const divStyle = {
+  backgroundColor: "#2558ca",
+  color: "white"
+}
+
+const panelStyle = {
+  backgroundColor: "#333",
+  color: "#333"
+}
+
 var Payment = React.createClass({
   mixins: [ ReactScriptLoaderMixin ],
 
@@ -81,14 +91,24 @@ var Payment = React.createClass({
       return <div>Payment Complete!</div>;
     }
     else {
-      return (<form onSubmit={this.onSubmit} >
-        <span>{ this.state.paymentError }</span><br />
-        <input type='text' data-stripe='number' placeholder='credit card number' /><br />
-        <input type='text' data-stripe='exp-month' placeholder='expiration month' /><br />
-        <input type='text' data-stripe='exp-year' placeholder='expiration year' /><br />
-        <input type='text' data-stripe='cvc' placeholder='cvc' /><br />
-        <input disabled={this.state.submitDisabled} type='submit' value='Purchase' />
-      </form>);
+      return (
+        <div className="panel panel-default">
+          <div className="panel-heading-custom panel-heading ">
+            <h2 className="panel-title"> Card Information </h2>
+          </div>
+          <div className="panel-body">
+            <form onSubmit={this.onSubmit} >
+              <span>{ this.state.paymentError }</span><br />
+              <input type='text' data-stripe='number' placeholder='credit card number' className="form-control input-md"/><br />
+              <input type='text' data-stripe='exp-month' placeholder='expiration month' className="form-control input-md"/><br />
+              <input type='text' data-stripe='exp-year' placeholder='expiration year' className="form-control input-md"/><br />
+              <input type='text' data-stripe='cvc' placeholder='cvc' className="form-control input-md"/><br />
+              <input disabled={this.state.submitDisabled} type='submit' value='Purchase' className="form-control input-md" style={divStyle}/>
+            </form>
+          </div>
+      
+        </div>
+        );
     }
   }
 });
